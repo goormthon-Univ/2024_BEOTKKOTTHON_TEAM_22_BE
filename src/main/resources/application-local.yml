@@ -6,7 +6,7 @@ server:
   port: 8080
 spring:
   datasource:
-    url: jdbc:mariadb://localhost:3306/unnamed
+    url: jdbc:mariadb://localhost:3300/user
     driver-class-name: org.mariadb.jdbc.Driver
     username: root
     password: 3642

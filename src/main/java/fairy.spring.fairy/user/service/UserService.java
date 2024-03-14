@@ -33,7 +33,7 @@ public class UserService {
 
         String token = tokenProvider.createToken(user.getEmail());
 
-        UserResponse.LoginResponseDTO loginResponseDTO = new UserResponse.LoginResponseDTO(user.getEmail(), user.getNickname(), user.getImage(), user.getId());
+        UserResponse.LoginResponseDTO loginResponseDTO = new UserResponse.LoginResponseDTO(user.getEmail(), user.getNickname(),  user.getId());
 
         return new UserResponse.LoginResponseWithTokenDTO(loginResponseDTO, token);
     }

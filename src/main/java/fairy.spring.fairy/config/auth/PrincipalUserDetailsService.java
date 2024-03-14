@@ -18,8 +18,8 @@ public class PrincipalUserDetailsService implements UserDetailsService {
     private final UserRepository userRepository;
 
     @Override
-    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        Optional<User> optionalUser = userRepository.findByEmail(email);
+    public UserDetails loadUserByUsername(String userid) throws UsernameNotFoundException {
+        Optional<User> optionalUser = userRepository.findByEmail(userid);
 
         if (optionalUser.isEmpty()) {
             return null;
