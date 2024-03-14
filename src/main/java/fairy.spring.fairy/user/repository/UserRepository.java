@@ -1,6 +1,7 @@
 package fairy.spring.fairy.user.repository;
 
-import com.example.shipgofunding.user.domain.User;
+
+import fairy.spring.fairy.user.domain.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

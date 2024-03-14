@@ -1,0 +1,35 @@
+server:
+  servlet:
+    encoding:
+      charset: utf-8
+      force: true
+  port: 8080
+spring:
+  datasource:
+    url: jdbc:mariadb://localhost:3306/unnamed
+    driver-class-name: org.mariadb.jdbc.Driver
+    username: root
+    password: 3642
+  h2:
+    console:
+      enabled: true
+  jpa:
+    hibernate:
+      ddl-auto: create
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+      default_batch_fetch_size: 100
+    open-in-view: false
+
+#springdoc:
+ # packages-to-scan: com.example.shipgofunding
+  #default-consumes-media-type: application/json;charset=UTF-8
+  #default-produces-media-type: application/json;charset=UTF-8
+  #swagger-ui:
+   # path: /
+  #   3disable-swagger-default-url: true
+    #display-request-duration: true
+    #operations-sorter: alpha
+

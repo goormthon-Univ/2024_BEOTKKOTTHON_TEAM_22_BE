@@ -1,6 +1,5 @@
 package fairy.spring.fairy.user.domain;
-
-import com.example.shipgofunding.config.utils.MetaData;
+import fairy.spring.fairy.config.utils.MetaData;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -50,13 +49,6 @@ public class User extends MetaData {
         this.nickname = nickname;
         this.password = password;
     }
-    @Builder
-    //비밀번호 변경
-    public void setPassword(String newPassword) {
-        this.email=email;
-        this.password = newPassword;
-    }
-
 
 
 }

@@ -1,8 +1,9 @@
 package fairy.spring.fairy.user.request;
 
 
-import com.example.shipgofunding.user.domain.RoleEnum;
-import com.example.shipgofunding.user.domain.User;
+
+import fairy.spring.fairy.user.domain.RoleEnum;
+import fairy.spring.fairy.user.domain.User;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import lombok.Getter;
@@ -55,75 +56,7 @@ public class UserRequest {
         }
     }
 
-    @NoArgsConstructor
-    @Getter
-    public static class SendEmailRequestDTO {
-        @NotNull(message = "이메일은 필수 입력 값입니다.")
-        private String email;
-
-        public SendEmailRequestDTO(String email) {
-            this.email = email;
-        }
-    }
-
-    @NoArgsConstructor
-    @Getter
-    @Setter
-    public static class VerficationRequestDTO {
-        @NotNull(message = "이메일은 필수 입력 값입니다.")
-        private String email;
-
-        @NotNull(message = "인증코드는 필수 입력 값입니다.")
-        @Pattern(regexp = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{1,6}$", message = "Password must be a combination of letters and numbers, and should be between 1 and 6 characters long.")
-        private String usercode;
-
-        public VerficationRequestDTO(String email, String usercode) {
-            this.email = email;
-            this.usercode = usercode;
-        }
-    }
-
-    @NoArgsConstructor
-    @Getter
-    @Setter
-    public static class PasswordDTO {
-        @NotNull(message = "이메일은 필수 입력 값입니다.")
-        private String email;
-
-        @NotNull(message = "비밀번호는 필수 입력 값 입니다.")
-        @Pattern(regexp = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$", message = "Password must be at least 8 characters long and include at least one letter and one number")
-        private String password;
-
-        @NotNull(message = "비밀번호를 한 번 더 입력해주세요.")
-        @Pattern(regexp = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$", message = "Password must be at least 8 characters long and include at least one letter and one number")
-        private String passwordcheck;
-
-        public PasswordDTO(String password, String passwordcheck, String email) {
-            this.password = password;
-            this.passwordcheck = passwordcheck;
-            this.email = email;
-        }
-    }
-
-    @Getter
-    @Setter
-    public static class snsloginDTO {
-        @NotNull(message = "이메일은 필수 입력 값입니다.")
-        private String email;
-
-        @NotNull(message = "이름은 필수 입력 값입니다.")
-        private String name;
-
-        private RoleEnum role;
-
-        private String username;
-
-
-
-
-    }
 }
-
 
 
 
