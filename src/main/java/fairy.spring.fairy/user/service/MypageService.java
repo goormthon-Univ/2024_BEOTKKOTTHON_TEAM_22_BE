@@ -8,16 +8,17 @@ import fairy.spring.fairy.user.repository.UserRepository;
 import fairy.spring.fairy.user.request.MypageRequest;
 import fairy.spring.fairy.user.response.MypageResponse;
 import jakarta.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
+@RequiredArgsConstructor
+@Service
 public class MypageService {
 
     private final UserRepository userRepository;
     private final MypageRepository mypageRepository;
 
-    public MypageService(UserRepository userRepository, MypageRepository mypageRepository) {
-        this.userRepository = userRepository;
-        this.mypageRepository = mypageRepository;
-    }
+
 
     @Transactional
     public MypageResponse.MypageinfoResponseDTO updateprofile(MypageRequest.MypageinfoRequestDTO mypageinfoRequestDTO){

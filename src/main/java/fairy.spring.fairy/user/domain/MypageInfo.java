@@ -3,8 +3,11 @@ package fairy.spring.fairy.user.domain;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.stereotype.Component;
+
 @Data
 @Entity
+@Component
 @NoArgsConstructor
 public class MypageInfo {
     @Id

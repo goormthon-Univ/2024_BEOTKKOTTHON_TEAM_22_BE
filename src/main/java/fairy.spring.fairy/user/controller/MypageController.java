@@ -23,10 +23,10 @@ public class MypageController {
 
     private final MypageService mypageService;
 
-    @Operation(summary = "프로필 업데이트", description = "프로필을 업데이트합니다.")
-    @ApiResponse(responseCode = "201", description = "프로필 업데이트 성공")
-    @GetMapping("/mypage/user")
-    public ResponseEntity<?> updateProfile(@RequestBody @Valid MypageRequest.MypageinfoRequestDTO mypageinfoRequestDTO, @AuthenticationPrincipal PrincipalUserDetails userDetails) {
+    @Operation(summary = "프로필 조회", description = "프로필을 조회합니다.")
+    @ApiResponse(responseCode = "201", description = "프로필 조회 성공")
+    @GetMapping("/mypage")
+    public ResponseEntity<?> updateProfile(@RequestParam MypageRequest.MypageinfoRequestDTO mypageinfoRequestDTO, @AuthenticationPrincipal PrincipalUserDetails userDetails) {
         MypageResponse.MypageinfoResponseDTO mypageinfoResponseDTO = mypageService.updateprofile(mypageinfoRequestDTO);
         return ResponseEntity.status(HttpStatus.OK).body(ApiResponseBuilder.success(mypageinfoResponseDTO));
     }
