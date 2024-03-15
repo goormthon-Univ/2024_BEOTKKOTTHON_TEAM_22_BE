@@ -15,7 +15,4 @@ public class MypageInfo {
     @Column(nullable = false)
     private String grade;
 
-    @OneToOne
-    @JoinColumn(name = "user_id")
-    private User user;
 }

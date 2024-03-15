@@ -35,8 +35,6 @@ public class User extends MetaData {
     @Column(name="role")
     private RoleEnum role;
 
-    @OneToOne(mappedBy = "user")
-    private MypageInfo mypageInfo;
 
 
 

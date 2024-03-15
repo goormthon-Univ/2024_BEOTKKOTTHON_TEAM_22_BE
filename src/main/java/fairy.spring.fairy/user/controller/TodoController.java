@@ -40,7 +40,7 @@ public class TodoController {
 
     @Operation(summary = "to do 리스트 목록 수정", description = "to do 리스트 목록을 수정합니다.")
     @ApiResponse(responseCode = "200", description = "to do 리스트 목록 수정 성공")
-    @PostMapping("/mypage/todo/{userid}/{todoid}")
+    @PatchMapping("/mypage/todo/{userid}/{todoid}")
     public ResponseEntity<?> update(@PathVariable("userid") Long userid, @RequestBody @Valid MypageRequest.TodolistRequestDTO todolistRequestDTO, Errors errors) {
         MypageResponse.TodolistResponseDTO todolistResponseDTO =todoService.updateById(userid,todolistRequestDTO);
         return ResponseEntity.status(HttpStatus.OK).body(ApiResponseBuilder.success(todolistResponseDTO));

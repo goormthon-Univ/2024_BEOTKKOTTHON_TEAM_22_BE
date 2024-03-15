@@ -25,7 +25,7 @@ public class MypageController {
 
     @Operation(summary = "프로필 업데이트", description = "프로필을 업데이트합니다.")
     @ApiResponse(responseCode = "201", description = "프로필 업데이트 성공")
-    @PatchMapping("/my-page/user")
+    @GetMapping("/mypage/user")
     public ResponseEntity<?> updateProfile(@RequestBody @Valid MypageRequest.MypageinfoRequestDTO mypageinfoRequestDTO, @AuthenticationPrincipal PrincipalUserDetails userDetails) {
         MypageResponse.MypageinfoResponseDTO mypageinfoResponseDTO = mypageService.updateprofile(mypageinfoRequestDTO);
         return ResponseEntity.status(HttpStatus.OK).body(ApiResponseBuilder.success(mypageinfoResponseDTO));

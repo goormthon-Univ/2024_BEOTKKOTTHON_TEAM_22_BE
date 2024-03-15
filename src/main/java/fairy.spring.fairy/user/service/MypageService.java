@@ -3,6 +3,7 @@ package fairy.spring.fairy.user.service;
 import fairy.spring.fairy.config.auth.PrincipalUserDetails;
 import fairy.spring.fairy.user.domain.MypageInfo;
 import fairy.spring.fairy.user.domain.User;
+import fairy.spring.fairy.user.repository.MypageRepository;
 import fairy.spring.fairy.user.repository.UserRepository;
 import fairy.spring.fairy.user.request.MypageRequest;
 import fairy.spring.fairy.user.response.MypageResponse;
@@ -11,15 +12,17 @@ import jakarta.transaction.Transactional;
 public class MypageService {
 
     private final UserRepository userRepository;
+    private final MypageRepository mypageRepository;
 
-    public MypageService(UserRepository userRepository) {
+    public MypageService(UserRepository userRepository, MypageRepository mypageRepository) {
         this.userRepository = userRepository;
+        this.mypageRepository = mypageRepository;
     }
 
     @Transactional
     public MypageResponse.MypageinfoResponseDTO updateprofile(MypageRequest.MypageinfoRequestDTO mypageinfoRequestDTO){
         User user = userRepository.findByEmail(mypageinfoRequestDTO.getEmail()).orElseThrow(() -> new RuntimeException("User not found."));
-        MypageInfo mypageInfo = user.getMypageInfo();
+        MypageInfo mypageInfo = mypageRepository.findByEmail(mypageinfoRequestDTO.getEmail()).orElseThrow(() -> new RuntimeException("User not found."));
 
         return new MypageResponse.MypageinfoResponseDTO(user.getNickname(),mypageInfo.getPoint(),mypageInfo.getGrade());
     }
