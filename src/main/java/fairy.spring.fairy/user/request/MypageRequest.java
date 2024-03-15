@@ -8,6 +8,7 @@ public class MypageRequest {
     @Getter
     @Setter
     public static class MypageinfoRequestDTO{
+        private String email;
         private String nickname;
         private Integer totalpoint;
         private String grade;

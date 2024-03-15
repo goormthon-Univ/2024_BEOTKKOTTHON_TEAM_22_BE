@@ -27,9 +27,7 @@ public class User extends MetaData {
     @Column(name = "password", nullable = false, unique = true)
     private String password;
 
-    @Column(name = "image")
-    private String image;
-    // 만약 nickname 이 유니크하다면, service 로직에서 닉네임 중복이 안되도록 수정해줘야 함
+
     @Column(name = "nickname", nullable = false)
     private String nickname;
 
@@ -37,9 +35,9 @@ public class User extends MetaData {
     @Column(name="role")
     private RoleEnum role;
 
-    //sns 인증 로그인 사용
-    @Column(name="username")
-    private String username;
+    @OneToOne(mappedBy = "user")
+    private MypageInfo mypageInfo;
+
 
 
     @Builder
