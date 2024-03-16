@@ -30,12 +30,9 @@ public class MypageResponse {
         private String Title;
         @Schema(description = "to do 리스트 고유 id", example = "1")
         private Long Todoid;
-        @Schema(description = "to do 리스트 완료 여부", example = "true")
-        private Boolean completed;
         public TodolistResponseDTO(Todolist todolist){
             this.Title= todolist.getTitle();
             this.Todoid=todolist.getId();
-            this.completed=todolist.getCompleted();
         }
     }
 

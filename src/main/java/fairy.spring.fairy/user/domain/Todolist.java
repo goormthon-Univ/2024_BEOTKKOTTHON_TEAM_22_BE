@@ -1,15 +1,12 @@
 package fairy.spring.fairy.user.domain;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.stereotype.Component;
-
-@Data
-@Component
+@Getter
 @Entity
 @NoArgsConstructor
+@Setter
 public class Todolist {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,4 +17,10 @@ public class Todolist {
 
     @Column(nullable = false)
     private Boolean completed;
+    @Builder
+    public Todolist(Long id, String Title, Boolean completed) {
+        this.id = id;
+        this.Title=Title;
+        this.completed=completed;
+    }
 }

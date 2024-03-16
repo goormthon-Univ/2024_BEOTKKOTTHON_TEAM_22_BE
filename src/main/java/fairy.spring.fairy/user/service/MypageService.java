@@ -1,6 +1,6 @@
 package fairy.spring.fairy.user.service;
 
-import fairy.spring.fairy.config.auth.PrincipalUserDetails;
+
 import fairy.spring.fairy.user.domain.MypageInfo;
 import fairy.spring.fairy.user.domain.User;
 import fairy.spring.fairy.user.repository.MypageRepository;
@@ -22,9 +22,13 @@ public class MypageService {
 
     @Transactional
     public MypageResponse.MypageinfoResponseDTO updateprofile(MypageRequest.MypageinfoRequestDTO mypageinfoRequestDTO){
-        User user = userRepository.findByEmail(mypageinfoRequestDTO.getEmail()).orElseThrow(() -> new RuntimeException("User not found."));
-        MypageInfo mypageInfo = mypageRepository.findByEmail(mypageinfoRequestDTO.getEmail()).orElseThrow(() -> new RuntimeException("User not found."));
-
+        User user = userRepository.findByEmail(mypageinfoRequestDTO.getEmail()).orElseThrow(() -> new RuntimeException("User with email " + mypageinfoRequestDTO.getEmail() + " not found."));
+        MypageInfo mypageInfo = MypageInfo.builder()
+                .email(user.getEmail())
+                .grade(mypageinfoRequestDTO.getGrade())
+                .point(mypageinfoRequestDTO.getTotalpoint())
+                .build();
+        mypageInfo = mypageRepository.save(mypageInfo);
         return new MypageResponse.MypageinfoResponseDTO(user.getNickname(),mypageInfo.getPoint(),mypageInfo.getGrade());
     }
 }

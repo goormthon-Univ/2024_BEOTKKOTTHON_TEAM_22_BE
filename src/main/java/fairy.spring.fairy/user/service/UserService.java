@@ -5,6 +5,7 @@ import fairy.spring.fairy.config.errors.exception.Exception400;
 import fairy.spring.fairy.config.jwt.TokenProvider;
 import fairy.spring.fairy.user.domain.RoleEnum;
 import fairy.spring.fairy.user.domain.User;
+import fairy.spring.fairy.user.repository.MypageRepository;
 import fairy.spring.fairy.user.repository.UserRepository;
 import fairy.spring.fairy.user.request.UserRequest;
 import fairy.spring.fairy.user.response.UserResponse;
@@ -21,6 +22,7 @@ public class UserService {
     private final UserRepository userRepository;
     private final TokenProvider tokenProvider;
     private final PasswordEncoder passwordEncoder;
+
 
     @Transactional(readOnly = true)
     public UserResponse.LoginResponseWithTokenDTO login(UserRequest.LoginRequestDTO request) {
@@ -46,5 +48,7 @@ public class UserService {
 
         // 저장
         userRepository.save(requestDTO.toEntity(RoleEnum.USER));
+
+
     }
 }

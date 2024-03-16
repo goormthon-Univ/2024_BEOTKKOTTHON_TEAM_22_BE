@@ -1,14 +1,13 @@
 package fairy.spring.fairy.user.domain;
 
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.stereotype.Component;
 
 @Data
+@Getter
 @Entity
-@Component
-@NoArgsConstructor
 public class MypageInfo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,5 +16,17 @@ public class MypageInfo {
     private Integer point;
     @Column(nullable = false)
     private String grade;
+    @Column(nullable = false)
+    private String email;
+
+    @Builder
+    public MypageInfo(Long id,Integer point,String grade,String email) {
+        this.id = id;
+        this.email = email;
+        this.point = point;
+        this.grade = grade;
+    }
+
+
 
 }

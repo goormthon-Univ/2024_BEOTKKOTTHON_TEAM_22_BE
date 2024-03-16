@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 @RequestMapping("/api")
 public class TodoController {
-    private TodoService todoService;
+    private final TodoService todoService;
 
     @Operation(summary = "to do 리스트 목록 생성", description = "to do 리스트 목록을 생성합니다.")
     @ApiResponse(responseCode = "201", description = "to do 리스트 목록 생성 성공")
