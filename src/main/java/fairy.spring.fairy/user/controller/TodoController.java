@@ -34,15 +34,15 @@ public class TodoController {
     @ApiResponse(responseCode = "200", description = "to do 리스트 목록 삭제 성공")
     @DeleteMapping("/mypage/todo/{userid}/{todoid}")
     public ResponseEntity<?> delete (@PathVariable("userid") Long userid, @PathVariable("todoid") Long todoid, @RequestBody @Valid MypageRequest.TodolistRequestDTO todolistRequestDTO, Errors errors) {
-        this.todoService.deleteById(userid);
+        this.todoService.deleteById(todoid);
         return ResponseEntity.status(HttpStatus.OK).body(ApiResponseBuilder.successWithNoContent());
     }
 
     @Operation(summary = "to do 리스트 목록 수정", description = "to do 리스트 목록을 수정합니다.")
     @ApiResponse(responseCode = "200", description = "to do 리스트 목록 수정 성공")
     @PatchMapping("/mypage/todo/{userid}/{todoid}")
-    public ResponseEntity<?> update(@PathVariable("userid") Long userid, @RequestBody @Valid MypageRequest.TodolistRequestDTO todolistRequestDTO, Errors errors) {
-        MypageResponse.TodolistResponseDTO todolistResponseDTO =todoService.updateById(userid,todolistRequestDTO);
+    public ResponseEntity<?> update(@PathVariable("userid") Long userid, @PathVariable("todoid") Long todoid,@RequestBody @Valid MypageRequest.TodolistRequestDTO todolistRequestDTO, Errors errors) {
+        MypageResponse.TodolistResponseDTO todolistResponseDTO =todoService.updateById(todoid,todolistRequestDTO);
         return ResponseEntity.status(HttpStatus.OK).body(ApiResponseBuilder.success(todolistResponseDTO));
     }
 }

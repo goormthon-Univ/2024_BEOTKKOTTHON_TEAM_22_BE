@@ -14,6 +14,7 @@ public class PointService {
 
     private final MypageRepository mypageRepository;
 
+    //포인트 적립
     @Transactional
     public MypageResponse.PointResponseDTO getpoint(MypageRequest.PointRequestDTO pointRequestDTO){
         MypageInfo mypageInfo = mypageRepository.findByEmail(pointRequestDTO.getEmail()).orElseThrow(() -> new RuntimeException("user don't extist"));

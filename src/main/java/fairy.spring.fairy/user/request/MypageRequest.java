@@ -1,6 +1,7 @@
 package fairy.spring.fairy.user.request;
 
 import fairy.spring.fairy.user.domain.Todolist;
+import jakarta.persistence.Column;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -32,6 +33,18 @@ public class MypageRequest {
     public static class PointRequestDTO{
         private String action;
         private String email;
+
+    }
+
+    @NoArgsConstructor
+    @Getter
+    @Setter
+    public static class PostRequestDTO{
+        private String postTitle;
+        private String pastContent;
+        private Integer postId;
+        private String createdAt;
+        private String category;
 
     }
 

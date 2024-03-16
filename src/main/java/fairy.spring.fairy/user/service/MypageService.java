@@ -19,7 +19,7 @@ public class MypageService {
     private final MypageRepository mypageRepository;
 
 
-
+    //프로필 조회
     @Transactional
     public MypageResponse.MypageinfoResponseDTO updateprofile(MypageRequest.MypageinfoRequestDTO mypageinfoRequestDTO){
         User user = userRepository.findByEmail(mypageinfoRequestDTO.getEmail()).orElseThrow(() -> new RuntimeException("User with email " + mypageinfoRequestDTO.getEmail() + " not found."));
