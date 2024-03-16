@@ -36,4 +36,14 @@ public class MypageResponse {
         }
     }
 
+    @Getter
+    @Setter
+    public static class PointResponseDTO{
+        @Schema(description = "획득한 총 포인트 ", example = "10")
+        private Integer totalpoint;
+        public PointResponseDTO(Integer point){
+            this.totalpoint= point;
+        }
+    }
+
 }

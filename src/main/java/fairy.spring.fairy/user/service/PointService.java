@@ -1,0 +1,32 @@
+package fairy.spring.fairy.user.service;
+
+import fairy.spring.fairy.user.domain.MypageInfo;
+import fairy.spring.fairy.user.repository.MypageRepository;
+import fairy.spring.fairy.user.request.MypageRequest;
+import fairy.spring.fairy.user.response.MypageResponse;
+import jakarta.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+
+@RequiredArgsConstructor
+@Service
+public class PointService {
+
+    private final MypageRepository mypageRepository;
+
+    @Transactional
+    public MypageResponse.PointResponseDTO getpoint(MypageRequest.PointRequestDTO pointRequestDTO){
+        MypageInfo mypageInfo = mypageRepository.findByEmail(pointRequestDTO.getEmail()).orElseThrow(() -> new RuntimeException("user don't extist"));
+        int currentpoint=mypageInfo.getPoint();
+        if(pointRequestDTO.getAction().equals("댓글 달기") || pointRequestDTO.getAction().equals("질문 달기")){
+            mypageInfo.setPoint(currentpoint+10);
+        }
+        if(pointRequestDTO.getAction().equals("팁 등록")){
+            mypageInfo.setPoint(currentpoint+100);
+        }
+        mypageInfo = mypageRepository.save(mypageInfo);
+        return new MypageResponse.PointResponseDTO(mypageInfo.getPoint());
+
+    }
+
+}

@@ -1,6 +1,6 @@
 package fairy.spring.fairy.user.service;
 
-import fairy.spring.fairy.user.domain.MypageInfo;
+
 import fairy.spring.fairy.user.domain.Todolist;
 import fairy.spring.fairy.user.repository.TodoRepository;
 import fairy.spring.fairy.user.request.MypageRequest;

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 @Data
 @Getter
 @Entity
+@NoArgsConstructor
 public class MypageInfo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

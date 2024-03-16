@@ -26,4 +26,13 @@ public class MypageRequest {
 
     }
 
+    @NoArgsConstructor
+    @Getter
+    @Setter
+    public static class PointRequestDTO{
+        private String action;
+        private String email;
+
+    }
+
 }
