@@ -56,6 +56,17 @@ public class UserRequest {
         }
     }
 
+    public static class BookmarkRequestDTO {
+        private Long userId;
+        private Long homeId;
+
+        public BookmarkRequestDTO(Long memberId, Long boardId) {
+            this.userId = memberId;
+            this.homeId = boardId;
+        }
+
+
+    }
 }
 
 

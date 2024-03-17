@@ -18,11 +18,9 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 
 
 @Tag(name = "User", description = "유저 API")
@@ -55,5 +53,11 @@ public class UserController {
 
         return ResponseEntity.status(HttpStatus.OK).body(ApiResponseBuilder.success(loginDTO.getLoginResponseDTO()));
     }
+
+    @GetMapping("/bookmark/register")
+    public String getUserId(Principal principal) {
+        return principal.getName();
+    }
+
 
 }
