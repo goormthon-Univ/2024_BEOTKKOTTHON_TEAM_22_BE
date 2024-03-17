@@ -33,16 +33,6 @@ public class MypageRequest {
 
     }
 
-    @NoArgsConstructor
-    @Getter
-    @Setter
-    public static class PostRequestDTO{
-        private String postTitle;
-        private String pastContent;
-        private Integer postId;
-        private String createdAt;
-        private String category;
 
-    }
 
 }

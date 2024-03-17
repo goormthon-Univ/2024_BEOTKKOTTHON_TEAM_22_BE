@@ -9,7 +9,7 @@ import lombok.*;
 @Getter
 @Entity
 @NoArgsConstructor
-public class Tip {
+public class Question {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
@@ -19,11 +19,12 @@ public class Tip {
 
     @Column(nullable = false)
     private String content;
-
+    
+    @Column(nullable = true)
     private String imageUrl;
 
     @Builder
-    public Tip(Long id, String title, String content, String imageUrl) {
+    public Question(Long id, String title, String content, String imageUrl) {
         this.id = id;
         this.title = title;
         this.content = content;
