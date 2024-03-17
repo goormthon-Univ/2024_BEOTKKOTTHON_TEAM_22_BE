@@ -15,7 +15,7 @@ public class CommunityRequest {
         private String title;
         private String content;
         private String imageurl;
-        private Long userid;
+        private String email;
     }
 
 

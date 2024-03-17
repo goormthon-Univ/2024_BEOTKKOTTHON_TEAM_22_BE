@@ -1,5 +1,6 @@
 package fairy.spring.fairy.user.service;
 
+import fairy.spring.fairy.config.errors.exception.Exception400;
 import fairy.spring.fairy.user.domain.MypageInfo;
 import fairy.spring.fairy.user.repository.MypageRepository;
 import fairy.spring.fairy.user.request.MypageRequest;
@@ -17,7 +18,7 @@ public class PointService {
     //포인트 적립
     @Transactional
     public MypageResponse.PointResponseDTO getpoint(MypageRequest.PointRequestDTO pointRequestDTO){
-        MypageInfo mypageInfo = mypageRepository.findByEmail(pointRequestDTO.getEmail()).orElseThrow(() -> new RuntimeException("user don't extist"));
+        MypageInfo mypageInfo = mypageRepository.findByEmail(pointRequestDTO.getEmail()).orElseThrow(() -> new Exception400(null, "유저가 존재하지 않습니다."));
         int currentpoint=mypageInfo.getPoint();
         if(pointRequestDTO.getAction().equals("댓글 달기") || pointRequestDTO.getAction().equals("질문 달기")){
             mypageInfo.setPoint(currentpoint+10);

@@ -1,6 +1,7 @@
 package fairy.spring.fairy.user.service;
 
 
+import fairy.spring.fairy.config.errors.exception.Exception400;
 import fairy.spring.fairy.user.domain.MypageInfo;
 import fairy.spring.fairy.user.domain.User;
 import fairy.spring.fairy.user.repository.MypageRepository;
@@ -22,7 +23,7 @@ public class MypageService {
     //프로필 조회
     @Transactional
     public MypageResponse.MypageinfoResponseDTO updateprofile(MypageRequest.MypageinfoRequestDTO mypageinfoRequestDTO){
-        User user = userRepository.findByEmail(mypageinfoRequestDTO.getEmail()).orElseThrow(() -> new RuntimeException("User with email " + mypageinfoRequestDTO.getEmail() + " not found."));
+        User user = userRepository.findByEmail(mypageinfoRequestDTO.getEmail()).orElseThrow(() -> new Exception400(null, "로그인을 해주세요."));
         MypageInfo mypageInfo = MypageInfo.builder()
                 .email(user.getEmail())
                 .grade(mypageinfoRequestDTO.getGrade())
