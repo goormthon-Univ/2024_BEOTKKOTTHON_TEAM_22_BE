@@ -6,9 +6,10 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
-@EnableJpaAuditing
+
 @EnableScheduling
 @SpringBootApplication
+@EnableJpaAuditing
 public class HoseworkFairyApplication {
 
 

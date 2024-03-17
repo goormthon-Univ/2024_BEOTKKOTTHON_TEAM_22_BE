@@ -3,6 +3,8 @@ package fairy.spring.fairy.Community.domain;
 import jakarta.persistence.*;
 import lombok.*;
 
+
+
 @Setter
 @Getter
 @Entity
@@ -26,6 +28,7 @@ public class Tip {
         this.title = title;
         this.content = content;
         this.imageUrl = imageUrl;
+
     }
 
 

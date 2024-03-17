@@ -1,6 +1,6 @@
 package fairy.spring.fairy.user.response;
 
-import fairy.spring.fairy.user.domain.Todolist;
+import fairy.spring.fairy.user.domain.Checklist;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
 import lombok.Setter;
@@ -30,9 +30,9 @@ public class MypageResponse {
         private String Title;
         @Schema(description = "to do 리스트 고유 id", example = "1")
         private Long Todoid;
-        public TodolistResponseDTO(Todolist todolist){
-            this.Title= todolist.getTitle();
-            this.Todoid=todolist.getId();
+        public TodolistResponseDTO(Checklist checklist){
+            this.Title= checklist.getTitle();
+            this.Todoid= checklist.getId();
         }
     }
 

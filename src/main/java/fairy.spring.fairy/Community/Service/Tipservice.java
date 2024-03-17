@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class Tipservice {
     private final Tiprepository tiprepository;
+
     @Transactional
     public CommunityResponse.TipResponseDTO createTip (CommunityRequest.TipRequestDTO tipRequestDTO){
        Tip tip = Tip.builder()
