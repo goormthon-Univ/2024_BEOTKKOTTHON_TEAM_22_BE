@@ -23,4 +23,9 @@ public class TipServiceImpl implements TipService {
     public List<Tip> getTipsByCategory(Category category) {
         return tipRepository.findByCategory(category);
     }
+
+    @Override
+    public List<Tip> searchTipsByKeyword(String keyword) {
+        return tipRepository.findByTitleContainingOrContentContaining(keyword, keyword);
+    }
 }
