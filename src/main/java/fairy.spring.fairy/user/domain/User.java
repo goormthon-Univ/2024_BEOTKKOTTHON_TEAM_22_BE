@@ -50,6 +50,4 @@ public class User extends MetaData {
         this.nickname = nickname;
         this.password = password;
     }
-
-
 }
