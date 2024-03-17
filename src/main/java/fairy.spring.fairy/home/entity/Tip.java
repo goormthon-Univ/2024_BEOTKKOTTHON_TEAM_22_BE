@@ -1,10 +1,12 @@
 package fairy.spring.fairy.home.entity;
 import jakarta.persistence.*;
-
+import fairy.spring.fairy.home.entity.Recommendation;
 
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.List;
 
 @Entity
 @Getter
@@ -24,4 +26,7 @@ public class Tip {
     private String content;
 
     // 다른 필드와 관련된 코드들...
+
+    @OneToMany(mappedBy = "tip")
+    private List<Recommendation> recommendations;
 }
