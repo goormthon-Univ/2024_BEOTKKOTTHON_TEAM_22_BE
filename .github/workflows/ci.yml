@@ -36,7 +36,7 @@ jobs:
         shell: bash
 
       - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v1
+        uses: root/configure-aws-credentials@v1
         with:
           aws-access-key-id: ${{ secrets.S3_ACCESSKEY }}
           aws-secret-access-key: ${{ secrets.S3_SECRETKEY }}
