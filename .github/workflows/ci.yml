@@ -5,7 +5,7 @@ name: CI
 on:
   push:
     branches: [ dstribute ]
-permissions: 
+permissions:
   id-token: write
 jobs:
   build:
@@ -44,4 +44,6 @@ jobs:
           aws-region: ap-northeast-2
 
       - name: Upload to S3
-        run: aws s3 cp --region ap-northeast-2 ./coinTalk.zip s3://fundingprofileimagedata/
+        run: aws s3 cp --region ap-northeast-2 ./coinTalk.zip s3://$S3_BUCKET_NAME/
+        env:
+          S3_BUCKET_NAME: fundingprofileimagedata
