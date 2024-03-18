@@ -5,7 +5,8 @@ name: CI
 on:
   push:
     branches: [ dstribute ]
-
+permissions: :
+  id-token: write
 jobs:
   build:
     runs-on: ubuntu-latest # 3 실행 환경 지정
