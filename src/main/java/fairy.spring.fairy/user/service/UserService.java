@@ -42,6 +42,9 @@ public class UserService {
 
     @Transactional
     public void signup(UserRequest.SignupRequestDTO requestDTO) {
+        if(userRepository.existsByEmail(requestDTO.getEmail())){
+           throw new Exception400(null,"이미 가입된 사용자가 있습니다.");
+        }
         // 비밀번호 암호화
         requestDTO.setPassword(passwordEncoder.encode(requestDTO.getPassword()));
         // TO-DO : 유저의 역할을 구분하는 로직 작성

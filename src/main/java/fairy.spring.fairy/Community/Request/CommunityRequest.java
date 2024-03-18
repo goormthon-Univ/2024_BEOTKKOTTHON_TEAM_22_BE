@@ -1,9 +1,13 @@
 package fairy.spring.fairy.Community.Request;
 
-import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.stereotype.Component;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class CommunityRequest {
 
@@ -14,9 +18,18 @@ public class CommunityRequest {
 
         private String title;
         private String content;
-        private String imageurl;
         private String email;
     }
+
+    @NoArgsConstructor
+    @Getter
+    @Setter
+    public class questionImageRequestDTO{
+
+        private List<MultipartFile> imageurl;
+    }
+
+
 
 
 }

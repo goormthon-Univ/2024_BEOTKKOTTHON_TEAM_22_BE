@@ -2,7 +2,9 @@ package fairy.spring.fairy.Community.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.util.List;
 
 
 @Setter
@@ -19,19 +21,16 @@ public class Question {
 
     @Column(nullable = false)
     private String content;
-    
-    @Column(nullable = true)
-    private String imageUrl;
+
 
     @Column(nullable = true)
     private String email;
 
     @Builder
-    public Question(Long id, String title, String content, String imageUrl, String email) {
+    public Question(Long id, String title, String content, String email) {
         this.id = id;
         this.title = title;
         this.content = content;
-        this.imageUrl = imageUrl;
         this.email=email;
 
     }

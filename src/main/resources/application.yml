@@ -25,6 +25,10 @@ spring:
   web:
     resources:
       add-mappings: false
+  cloud:
+    aws:
+      stack.auto: false
+
 
 
 

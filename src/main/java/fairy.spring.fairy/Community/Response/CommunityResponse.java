@@ -4,6 +4,8 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 public class CommunityResponse {
     @Getter
     @Setter
@@ -15,6 +17,17 @@ public class CommunityResponse {
         public questionResponseDTO(Long questionid, String email){
             this.questionid= questionid;
             this.email=email;
+        }
+    }
+
+    @Getter
+    @Setter
+    public static class questionImageResponseDTO{
+        @Schema(description = "질문 이미지")
+        private List<String> imageurl;
+
+        public questionImageResponseDTO(List<String> imageurl){
+            this.imageurl=imageurl;
         }
     }
 }
