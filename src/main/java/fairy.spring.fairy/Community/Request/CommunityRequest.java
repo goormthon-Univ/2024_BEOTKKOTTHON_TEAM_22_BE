@@ -3,15 +3,13 @@ package fairy.spring.fairy.Community.Request;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.util.ArrayList;
-import java.util.List;
 
+import java.util.List;
+@NoArgsConstructor
 public class CommunityRequest {
 
-    @NoArgsConstructor
     @Getter
     @Setter
     public class questionRequestDTO{
@@ -21,7 +19,7 @@ public class CommunityRequest {
         private String email;
     }
 
-    @NoArgsConstructor
+
     @Getter
     @Setter
     public class questionImageRequestDTO{

@@ -16,10 +16,10 @@ public class S3config {
         private String accessKey;
         @Value("${S3_SECRETKEY}")
         private String secretKey;
-        @Value("${region.static}")
+        @Value("${regionstatic}")
         private String region;
-    @Value("${bucket}")
-    private String bucket;
+        @Value("${bucket}")
+        private String bucket;
 
 
 
