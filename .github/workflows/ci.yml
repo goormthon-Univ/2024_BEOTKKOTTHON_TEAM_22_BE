@@ -70,5 +70,5 @@ jobs:
           --application-name coinTalk \
           --deployment-group-name coin-group \
           --file-exists-behavior OVERWRITE \
-          --s3-location bucket=fundingprofileimagedata,bundleType=zip,key=coinTalk.zip \ 
-          --region ap-northeast-2 
+          --s3-location bucket=fundingprofileimagedata,bundleType=zip,key=coinTalk.zip \
+          --region ap-northeast-2
