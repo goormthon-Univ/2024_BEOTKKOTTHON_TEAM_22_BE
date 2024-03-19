@@ -1,4 +1,4 @@
-package fairy.spring.fairy.config.S3;
+package fairy.spring.fairy.Community.Service;
 
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.model.ObjectMetadata;

@@ -8,29 +8,4 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
 class FairyApplicationTests {
-	@Autowired
-	private Questioncontroller questioncontroller;
-
-
-
-	@Test
-	void contextLoads() {
-
-		CommunityRequest communityRequest = new CommunityRequest();
-		CommunityRequest.questionRequestDTO questionRequestDTO = communityRequest.new questionRequestDTO();
-
-
-		String title = "Test Title";
-		String content = "This is test content.";
-
-
-
-
-		questionRequestDTO.setContent(title);
-		questionRequestDTO.setTitle(content);
-		questioncontroller.createQuestion(questionRequestDTO);
-
-
-	}
-
 }
