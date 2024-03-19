@@ -1,8 +1,5 @@
-# 1 워크플로의 이름 지정
 name: CI
 
-
-# 2 워크플로가 시작될 조건 지정
 on:
   push:
     branches: [ main ]
@@ -12,8 +9,7 @@ permissions:
   contents: read
 jobs:
   build:
-    runs-on: ubuntu-latest # 3 실행 환경 지정
-    #4 실행스텝지정
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
 
@@ -29,27 +25,6 @@ jobs:
         run: ./gradlew clean build --exclude-task test
 
 
-
-      # 디렉토리 생성
-      - name: Make Directory
-        run: mkdir -p deploy
-
-      # Jar 파일 복사
-      - name: Copy Jar
-        run: cp ./build/libs/*.jar ./deploy
-      # appspec.yml 파일 복사
-      - name: Copy appspec.yml
-        run: cp appspec.yml ./deploy
-
-      # script files 복사
-      - name: Copy script
-        run: cp ./scripts/*.sh ./deploy
-
-      - name: Make zip file
-        run: zip -r ./coinTalk.zip ./deploy
-        shell: bash
-
-
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
@@ -57,15 +32,29 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ap-northeast-2
 
-      - name: Upload to S3
-        run: aws s3 cp --region ap-northeast-2 ./coinTalk.zip s3://fundingprofileimagedata/
+      - name: Get current time
+        uses: 1466587594/get-current-time@v2
+        id: current-time
+        with:
+          format: YYYY-MM-DDTHH-mm-ss
+          utcOffset: "+09:00"
 
+      - name: Generate deployment package
+        run: |
+          mkdir -p deploy
+          cp build/libs/*.jar deploy/application.jar
+          cp Procfile deploy/Procfile
+          cp -r .ebextensions deploy/.ebextensions
+          cp -r .platform deploy/.platform
+          cd deploy && zip -r deploy.zip .
 
-
-      # Deploy
-      - name: Deploy
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        run:
-          aws deploy create-deployment --application-name coinTalk --deployment-group-name coin-group --file-exists-behavior OVERWRITE --s3-location bucket=fundingprofileimagedata,bundleType=zip,key=coinTalk.zip --region ap-northeast-2
+      - name: Deploy to EB
+        uses: einaregilsson/beanstalk-deploy@v14
+        with:
+          aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          application_name: test
+          environment_name: Test-env
+          version_label: github-action-${{steps.current-time.outputs.formattedTime}}
+          region: ap-northeast-2
+          deployment_package: deploy/deploy.zip
