@@ -27,7 +27,7 @@ public class User extends MetaData {
     @Column(name = "password", nullable = false, unique = true)
     private String password;
 
-
+<<<<<<< question
 
 =======
     @Column(name = "image")
