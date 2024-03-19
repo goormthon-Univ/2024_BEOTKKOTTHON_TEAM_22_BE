@@ -3,14 +3,16 @@ import jakarta.persistence.*;
 import fairy.spring.fairy.home.entity.Recommendation;
 
 import jakarta.persistence.*;
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.List;
 
 @Entity
 @Getter
-@Setter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Tip {
 
     @Id
@@ -27,6 +29,6 @@ public class Tip {
 
     // 다른 필드와 관련된 코드들...
 
-    @OneToMany(mappedBy = "tip")
-    private List<Recommendation> recommendations;
+    //@OneToMany(mappedBy = "tip")
+    //private List<Recommendation> recommendations;
 }

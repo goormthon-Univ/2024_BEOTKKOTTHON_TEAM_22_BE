@@ -1,13 +1,15 @@
 package fairy.spring.fairy.user.response;
 
 import io.swagger.v3.oas.annotations.media.Schema;
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 public class UserResponse {
 
         @Getter
-        @Setter
+        @NoArgsConstructor(access = AccessLevel.PROTECTED)
         public static class SignupResponseDTO {
                 @Schema(description = "이메일", example = "example@example.com")
                 String email;
@@ -25,7 +27,7 @@ public class UserResponse {
         }
 
         @Getter
-        @Setter
+        @NoArgsConstructor(access = AccessLevel.PROTECTED)
         public static class LoginResponseWithTokenDTO {
                 @Schema(description = "로그인 응답", implementation = LoginResponseDTO.class)
                 private LoginResponseDTO loginResponseDTO;
@@ -39,7 +41,7 @@ public class UserResponse {
         }
 
         @Getter
-        @Setter
+        @NoArgsConstructor(access = AccessLevel.PROTECTED)
         public static class LoginResponseDTO {
                 @Schema(description = "회원 이메일", example = "example@example.com")
                 String email;
