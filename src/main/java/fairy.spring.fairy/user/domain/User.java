@@ -28,6 +28,11 @@ public class User extends MetaData {
     private String password;
 
 
+
+    @Column(name = "image")
+    private String image;
+    // 만약 nickname 이 유니크하다면, service 로직에서 닉네임 중복이 안되도록 수정해줘야 함
+    //닉네임 중복은 상관없을듯
     @Column(name = "nickname", nullable = false)
     private String nickname;
 
@@ -45,6 +50,4 @@ public class User extends MetaData {
         this.nickname = nickname;
         this.password = password;
     }
-
-
 }

@@ -6,6 +6,7 @@ import fairy.spring.fairy.user.domain.RoleEnum;
 import fairy.spring.fairy.user.domain.User;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -15,7 +16,7 @@ import org.springframework.stereotype.Component;
 public class UserRequest {
 
     @Getter
-    @Setter
+    @NoArgsConstructor(access = AccessLevel.PROTECTED)
     @Component
     public static class SignupRequestDTO {
         @NotNull(message = "이메일은 필수 입력 값입니다.")
@@ -40,9 +41,8 @@ public class UserRequest {
 
     }
 
-    @NoArgsConstructor
+    @NoArgsConstructor(access = AccessLevel.PROTECTED)
     @Getter
-    @Setter
     public static class LoginRequestDTO {
         @NotNull(message = "이메일은 필수 입력 값입니다.")
         private String email;
@@ -56,6 +56,17 @@ public class UserRequest {
         }
     }
 
+    public static class BookmarkRequestDTO {
+        private Long userId;
+        private Long homeId;
+
+        public BookmarkRequestDTO(Long memberId, Long boardId) {
+            this.userId = memberId;
+            this.homeId = boardId;
+        }
+
+
+    }
 }
 
 

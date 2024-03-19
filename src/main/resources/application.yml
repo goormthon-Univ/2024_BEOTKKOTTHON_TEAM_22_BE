@@ -6,10 +6,10 @@ server:
   port: 8080
 spring:
   datasource:
-    url: jdbc:mariadb://localhost:3300/user
+    url: jdbc:mariadb://localhost:3306/fairy
     driver-class-name: org.mariadb.jdbc.Driver
     username: root
-    password: 3642
+    password: 8155103283
   h2:
     console:
       enabled: true
