@@ -20,6 +20,5 @@ public class QuestionImageservice {
     public CommunityResponse.questionImageResponseDTO createQuestionImage (CommunityRequest.questionImageRequestDTO questionImageRequestDTO){
         List<String> questionImage= s3UploadService.uploadMultipleFiles(questionImageRequestDTO.getImageurl());
         return new CommunityResponse.questionImageResponseDTO(questionImage);
+    }
 }
-}
-
