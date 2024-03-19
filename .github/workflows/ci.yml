@@ -28,10 +28,16 @@ jobs:
         run: mkdir -p deploy
 
       - name: Copy Jar
-        run: cp ./build/libs/*.jar ./deploy
+        run: cp ./build/libs/fairy-0.0.1-SNAPSHOT.jar ./deploy
+
+      - name: Copy Procfile
+        run: cp Procfile deploy/Procfile
+
+      - name: Copy ebextenstions
+        run: cp -r .ebextenstions deploy/.ebextenstions
 
       - name: Make zip file
-        run: zip -r ./deploy.zip ./deploy
+        run: cd deploy && zip -r ./deploy.zip .
         shell: bash
 
 
