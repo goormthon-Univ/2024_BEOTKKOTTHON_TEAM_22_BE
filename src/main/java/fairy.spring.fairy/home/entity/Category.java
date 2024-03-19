@@ -1,12 +1,12 @@
 package fairy.spring.fairy.home.entity;
 
 import jakarta.persistence.*;
-import lombok.AccessLevel;
+//import lombok.AccessLevel;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
+//import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.List;
+//import java.util.List;
 
 @Entity
 @Getter
