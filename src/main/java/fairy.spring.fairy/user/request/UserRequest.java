@@ -39,6 +39,9 @@ public class UserRequest {
                     .build();
         }
 
+        public void setPassword(String encode) {
+            this.password = encode;
+        }
     }
 
     @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -58,11 +61,11 @@ public class UserRequest {
 
     public static class BookmarkRequestDTO {
         private Long userId;
-        private Long homeId;
+        private Long tipId;
 
-        public BookmarkRequestDTO(Long memberId, Long boardId) {
-            this.userId = memberId;
-            this.homeId = boardId;
+        public BookmarkRequestDTO(Long userId, Long tipId) {
+            this.userId = userId;
+            this.tipId = tipId;
         }
 
 
