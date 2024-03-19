@@ -5,6 +5,7 @@ import fairy.spring.fairy.config.errors.exception.Exception400;
 import fairy.spring.fairy.config.jwt.TokenProvider;
 import fairy.spring.fairy.user.domain.RoleEnum;
 import fairy.spring.fairy.user.domain.User;
+import fairy.spring.fairy.user.repository.MypageRepository;
 import fairy.spring.fairy.user.repository.UserRepository;
 import fairy.spring.fairy.user.request.UserRequest;
 import fairy.spring.fairy.user.response.UserResponse;
@@ -21,6 +22,7 @@ public class UserService {
     private final UserRepository userRepository;
     private final TokenProvider tokenProvider;
     private final PasswordEncoder passwordEncoder;
+
 
     @Transactional(readOnly = true)
     public UserResponse.LoginResponseWithTokenDTO login(UserRequest.LoginRequestDTO request) {
@@ -40,11 +42,16 @@ public class UserService {
 
     @Transactional
     public void signup(UserRequest.SignupRequestDTO requestDTO) {
+        if(userRepository.existsByEmail(requestDTO.getEmail())){
+           throw new Exception400(null,"이미 가입된 사용자가 있습니다.");
+        }
         // 비밀번호 암호화
         requestDTO.setPassword(passwordEncoder.encode(requestDTO.getPassword()));
         // TO-DO : 유저의 역할을 구분하는 로직 작성
 
         // 저장
         userRepository.save(requestDTO.toEntity(RoleEnum.USER));
+
+
     }
 }
