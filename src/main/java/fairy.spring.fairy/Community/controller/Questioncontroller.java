@@ -56,5 +56,15 @@ public class Questioncontroller {
         CommunityResponse.questionResponseDTO questionResponseDTO = questionservice.updateById(question_id,questionRequestDTO);
         return ResponseEntity.status(HttpStatus.OK).body(ApiResponseBuilder.success(questionResponseDTO));
     }
+/*
+    @Operation(summary = "질문 전체 조회", description = "질문전체를 조회합니다.")
+    @ApiResponse(responseCode = "200", description = "질문 조회 성공")
+    @GetMapping("/community/items")
+    public ResponseEntity<?> viewQuestion(){
+        List<String> viewquestionResponseDTO=questionservice.searchAll();
+        return  ResponseEntity.status(HttpStatus.OK).body(ApiResponseBuilder.success(viewquestionResponseDTO));
+    }
+    */
+    }
 
-}
+

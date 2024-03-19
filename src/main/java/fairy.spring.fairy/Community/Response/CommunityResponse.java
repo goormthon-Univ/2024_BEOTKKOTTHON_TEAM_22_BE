@@ -31,4 +31,19 @@ public class CommunityResponse {
             this.imageurl=imageurl;
         }
     }
+
+    @Getter
+    @Setter
+    public static class viewquestionResponseDTO{
+        @Schema(description = "질문 전체")
+        private List<String> title;
+        private List<String> content;
+        private List<Long> id ;
+
+        public viewquestionResponseDTO(List<String> title,List<String> content,List<Long> id){
+            this.id=id;
+            this.title=title;
+            this.content=content;
+        }
+    }
 }

@@ -15,7 +15,7 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 
-@Tag(name = "to do 리스트", description = "to do 리스트 API")
+@Tag(name = "체크 리스트", description = "체크 리스트 API")
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api")
