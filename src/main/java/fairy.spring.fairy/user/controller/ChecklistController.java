@@ -26,14 +26,14 @@ public class ChecklistController {
     @ApiResponse(responseCode = "201", description = "체크 리스트 목록 생성 성공")
     @PostMapping("/mypage/checklist/{userid}")
     public ResponseEntity<?> create(@PathVariable("userid") Long userid, @RequestBody @Valid MypageRequest.TodolistRequestDTO todolistRequestDTO, Errors errors) {
-        MypageResponse.TodolistResponseDTO todolistResponseDTO = checklist.add(todolistRequestDTO);
+        MypageResponse.TodolistResponseDTO todolistResponseDTO = checklist.add(todolistRequestDTO,userid);
         return ResponseEntity.status(HttpStatus.OK).body(ApiResponseBuilder.success(todolistResponseDTO));
     }
 
     @Operation(summary = "체크 리스트 목록 삭제", description = "체크 리스트 목록을 삭제합니다.")
     @ApiResponse(responseCode = "200", description = "체크 리스트 목록 삭제 성공")
-    @DeleteMapping("/mypage/checklist/{userid}/{checklistid}")
-    public ResponseEntity<?> delete (@PathVariable("userid") Long userid, @PathVariable("checklistid") Long checklistid, @RequestBody @Valid MypageRequest.TodolistRequestDTO todolistRequestDTO, Errors errors) {
+    @DeleteMapping("/mypage/checklist/{checklistid}")
+    public ResponseEntity<?> delete (@PathVariable("checklistid") Long checklistid) {
         this.checklist.deleteById(checklistid);
         return ResponseEntity.status(HttpStatus.OK).body(ApiResponseBuilder.successWithNoContent());
     }
@@ -42,7 +42,15 @@ public class ChecklistController {
     @ApiResponse(responseCode = "200", description = "체크 리스트 목록 수정 성공")
     @PatchMapping("/mypage/checklist/{userid}/{checklistid}")
     public ResponseEntity<?> update(@PathVariable("userid") Long userid, @PathVariable("checklistid") Long checklistid,@RequestBody @Valid MypageRequest.TodolistRequestDTO todolistRequestDTO, Errors errors) {
-        MypageResponse.TodolistResponseDTO todolistResponseDTO = checklist.updateById(checklistid,todolistRequestDTO);
+        MypageResponse.TodolistResponseDTO todolistResponseDTO = checklist.updateById(checklistid,todolistRequestDTO,userid);
         return ResponseEntity.status(HttpStatus.OK).body(ApiResponseBuilder.success(todolistResponseDTO));
+    }
+
+    @Operation(summary = "체크리스트 조회", description = "체크리스트를 조회합니다.")
+    @ApiResponse(responseCode = "200", description = "체크리스트 조회 성공")
+    @GetMapping(value = "/mypage/checklist/{userid}")
+    public ResponseEntity<?> getProfile(@PathVariable("userid") Long userid) {
+        MypageResponse.ChecklistViewResponseDTO checklistViewResponseDTO1 = checklist.searchAll(userid);
+        return ResponseEntity.status(HttpStatus.OK).body(ApiResponseBuilder.success(checklistViewResponseDTO1));
     }
 }

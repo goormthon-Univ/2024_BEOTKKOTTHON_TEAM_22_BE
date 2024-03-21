@@ -28,8 +28,9 @@ public class Checklist {
     private final TodoRepository todoRepository;
     @Transactional
     //체크 리스트 목록 전체 조회
-    public List<fairy.spring.fairy.user.domain.Checklist> searchAll(){
-        return this.todoRepository.findAll();
+    public MypageResponse.ChecklistViewResponseDTO searchAll(Long userid){
+        List<fairy.spring.fairy.user.domain.Checklist> checklist = todoRepository.findByUserid(userid);
+        return new MypageResponse.ChecklistViewResponseDTO(checklist);
     }
     @Transactional
     //체크 리스트 목록 중 특정 아이템 조회
@@ -39,24 +40,25 @@ public class Checklist {
     }
     @Transactional
     //체크 리스트 목록에 아이템 추가
-    public MypageResponse.TodolistResponseDTO add(MypageRequest.TodolistRequestDTO todolistRequestDTO){
+    public MypageResponse.TodolistResponseDTO add(MypageRequest.TodolistRequestDTO todolistRequestDTO,Long userid){
         fairy.spring.fairy.user.domain.Checklist checklist = fairy.spring.fairy.user.domain.Checklist.builder()
-                .Title(todolistRequestDTO.getTitle())
+                .title(todolistRequestDTO.getTitle())
                 .completed(todolistRequestDTO.getCompleted())
+                .userid(userid)
                 .build();
         return new MypageResponse.TodolistResponseDTO(todoRepository.save(checklist));
     }
     @Transactional
     // 체크 리스트 목록에 아이템 수정
-    public MypageResponse.TodolistResponseDTO updateById(Long id, MypageRequest.TodolistRequestDTO todolistRequestDTO){
+    public MypageResponse.TodolistResponseDTO updateById(Long id, MypageRequest.TodolistRequestDTO todolistRequestDTO,Long userid){
         fairy.spring.fairy.user.domain.Checklist checklist = this.searchById(id);
         if(checklist.getTitle()!=null && checklist.getCompleted()!=null){
-            checklist = new fairy.spring.fairy.user.domain.Checklist(id, todolistRequestDTO.getTitle(), todolistRequestDTO.getCompleted());
+            checklist = new fairy.spring.fairy.user.domain.Checklist(id, todolistRequestDTO.getTitle(), todolistRequestDTO.getCompleted(),userid);
         }
         return new MypageResponse.TodolistResponseDTO(todoRepository.save(checklist));
     }
     @Transactional
-    //to do 리스트 목록에 아이템 삭제
+    //체크 리스트 목록에 아이템 삭제
     public void deleteById(Long id){
         this.todoRepository.deleteById(id);
     }

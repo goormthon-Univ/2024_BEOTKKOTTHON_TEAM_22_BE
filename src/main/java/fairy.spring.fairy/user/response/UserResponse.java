@@ -50,10 +50,12 @@ public class UserResponse {
                 @Schema(description = "유저 아이디")
                 Long id;
 
+
                 public LoginResponseDTO(String email, String nickname, Long id) {
                         this.email = email;
                         this.nickname = nickname;
                         this.id=id;
+
                 }
 
         }

@@ -1,5 +1,6 @@
 package fairy.spring.fairy.user.request;
 
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -7,32 +8,33 @@ import lombok.Setter;
 
 
 public class MypageRequest {
-    @NoArgsConstructor
+
     @Getter
-    @Setter
+    @NoArgsConstructor(access = AccessLevel.PROTECTED)
     public static class MypageinfoRequestDTO{
         private String email;
-        private Integer totalpoint;
-        private String grade;
+
+        public MypageinfoRequestDTO(String email) {
+            this.email = email;
+        }
     }
-    @NoArgsConstructor
+
     @Getter
-    @Setter
+    @NoArgsConstructor(access = AccessLevel.PROTECTED)
     public static class TodolistRequestDTO{
-        private String Title;
+        private String title;
         private Boolean completed;
-
-    }
-
-    @NoArgsConstructor
-    @Getter
-    @Setter
-    public static class PointRequestDTO{
-        private String action;
-        private String email;
+        public TodolistRequestDTO(String title, Boolean completed) {
+            this.title = title;
+            this.completed = completed;
+        }
 
     }
 
 
 
-}
+    }
+
+
+
+

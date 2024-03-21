@@ -1,49 +1,67 @@
 package fairy.spring.fairy.Community.Response;
 
+import fairy.spring.fairy.Community.domain.Comment;
 import fairy.spring.fairy.Community.domain.Question;
 import io.swagger.v3.oas.annotations.media.Schema;
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.List;
 
 public class CommunityResponse {
     @Getter
-    @Setter
+    @NoArgsConstructor(access = AccessLevel.PROTECTED)
     public static class questionResponseDTO{
         @Schema(description = "질문 고유 id", example = "1")
-        private Long questionid;
+        private Long id;
         @Schema(description = "질문 작성 사용자 이메일", example = "1")
         private String email;
-        public questionResponseDTO(Question question){
-            this.questionid= question.getId();
-            this.email=question.getEmail();
-        }
-    }
-
-    @Getter
-    @Setter
-    public static class questionImageResponseDTO{
-        @Schema(description = "질문 이미지")
+        @Schema(description = "질문 작성 이미지 url")
         private List<String> imageurl;
+        @Schema(description = "질문자 닉네임")
+        private String nickname;
 
-        public questionImageResponseDTO(List<String> imageurl){
-            this.imageurl=imageurl;
+        public questionResponseDTO(Question question){
+            this.id= question.getId();
+            this.email=question.getEmail();
+            this.imageurl=question.getImageurl();
+            this.nickname=getNickname();
+
         }
     }
 
-    @Getter
-    @Setter
-    public static class viewquestionResponseDTO{
-        @Schema(description = "질문 전체")
-        private List<String> title;
-        private List<String> content;
-        private List<Long> id ;
 
-        public viewquestionResponseDTO(List<String> title,List<String> content,List<Long> id){
+
+    @Getter
+    @NoArgsConstructor(access = AccessLevel.PROTECTED)
+    public static class viewquestionResponseDTO{
+        @Schema(description = "질문 제목")
+        private List<Question> title;
+        @Schema(description = "질문 내용")
+        private List<Question> content;
+        @Schema(description = "질문 고유 아이디")
+        private List<Question> id ;
+
+        public viewquestionResponseDTO(List<Question> questions){
             this.id=id;
             this.title=title;
             this.content=content;
+        }
+    }
+
+    @Getter
+    @NoArgsConstructor(access = AccessLevel.PROTECTED)
+    public static class CommentResponseDTO{
+        @Schema(description = "댓글 작성자 고유 id")
+        private Long userid;
+        @Schema(description = "댓글 고유 id")
+        private Long commentid;
+
+        public CommentResponseDTO(Comment comment){
+            this.userid= userid;
+            this.commentid=commentid;
         }
     }
 }

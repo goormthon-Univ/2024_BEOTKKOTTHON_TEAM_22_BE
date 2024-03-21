@@ -1,15 +1,13 @@
 package fairy.spring.fairy.user.domain;
 import fairy.spring.fairy.config.utils.MetaData;
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.SQLRestriction;
 import org.springframework.stereotype.Component;
 
 @Getter
+@Setter
 @Component
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @SQLRestriction("deleted_at IS NULL")
@@ -29,10 +27,9 @@ public class User extends MetaData {
 
 
 
-    @Column(name = "image")
-    private String image;
-    // 만약 nickname 이 유니크하다면, service 로직에서 닉네임 중복이 안되도록 수정해줘야 함
-    //닉네임 중복은 상관없을듯
+    @Column(name = "totalpoint")
+    private int totalpoint;
+
     @Column(name = "nickname", nullable = false)
     private String nickname;
 
@@ -40,14 +37,22 @@ public class User extends MetaData {
     @Column(name="role")
     private RoleEnum role;
 
+    @Column(name = "grade", nullable = false)
+    private String grade;
+
+
+
 
 
 
     @Builder
-    public User(String email, String password, String nickname, RoleEnum role) {
+    public User(String email, String password, String nickname, RoleEnum role, int totalpoint,Long id,String grade) {
         this.role = role;
         this.email = email;
         this.nickname = nickname;
         this.password = password;
+        this.totalpoint=totalpoint;
+        this.id=id;
+        this.grade=grade;
     }
 }
