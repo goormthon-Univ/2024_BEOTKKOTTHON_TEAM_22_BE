@@ -5,7 +5,6 @@ import fairy.spring.fairy.config.errors.exception.Exception400;
 import fairy.spring.fairy.config.jwt.TokenProvider;
 import fairy.spring.fairy.user.domain.RoleEnum;
 import fairy.spring.fairy.user.domain.User;
-import fairy.spring.fairy.user.repository.MypageRepository;
 import fairy.spring.fairy.user.repository.UserRepository;
 import fairy.spring.fairy.user.request.UserRequest;
 import fairy.spring.fairy.user.response.UserResponse;
@@ -27,7 +26,7 @@ public class UserService {
     @Transactional(readOnly = true)
     public UserResponse.LoginResponseWithTokenDTO login(UserRequest.LoginRequestDTO request) {
         User user = userRepository.findByEmail(request.getEmail())
-                .orElseThrow(() -> new Exception400(null, "아이디 또는 비밀번호가 일치하지 않습니다."));
+                .orElseThrow(() -> new Exception400(null, "회원가입을 해주세요."));
 
         if (!passwordEncoder.matches(request.getPassword(), user.getPassword())) {
             throw new Exception400(null, "아이디 또는 비밀번호가 일치하지 않습니다.");
@@ -47,10 +46,14 @@ public class UserService {
         }
         // 비밀번호 암호화
         requestDTO.setPassword(passwordEncoder.encode(requestDTO.getPassword()));
-        // TO-DO : 유저의 역할을 구분하는 로직 작성
+        requestDTO.setTotalpoint(0);
+        requestDTO.setGrade("Level 1");
+
+        User newUser =requestDTO.toEntity(RoleEnum.USER);
+
 
         // 저장
-        userRepository.save(requestDTO.toEntity(RoleEnum.USER));
+        userRepository.save(newUser);
 
 
     }

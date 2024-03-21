@@ -24,7 +24,7 @@ public class MypageController {
 
     @Operation(summary = "프로필 조회", description = "프로필을 조회합니다.")
     @ApiResponse(responseCode = "200", description = "프로필 조회 성공")
-    @GetMapping(value = "/mypage/{userid}")
+    @GetMapping(value = "/mypage")
     public ResponseEntity<?> getProfile(@RequestBody  MypageRequest.MypageinfoRequestDTO mypageinfoRequestDTO) {
         MypageResponse.MypageinfoResponseDTO mypageinfoResponseDTO = mypageService.updateprofile(mypageinfoRequestDTO);
         return ResponseEntity.status(HttpStatus.OK).body(ApiResponseBuilder.success(mypageinfoResponseDTO));

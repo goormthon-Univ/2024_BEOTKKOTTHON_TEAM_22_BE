@@ -23,15 +23,23 @@ public class Question {
     private String content;
 
 
-    @Column(nullable = true)
+    @Column(nullable = false)
     private String email;
 
+    @Column(nullable = true)
+    private List<String> imageurl;
+
+    @Column(nullable = false)
+    private String nickname;
+
     @Builder
-    public Question(Long id, String title, String content, String email) {
+    public Question(Long id, String title, String content, String email,List<String> imageurl,String nickname) {
         this.id = id;
         this.title = title;
         this.content = content;
         this.email=email;
+        this.imageurl=imageurl;
+        this.nickname=nickname;
 
     }
 

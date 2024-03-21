@@ -23,6 +23,7 @@ public class UserRequest {
         @Pattern(regexp = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}$", message = "Invalid email format")
         private String email;
 
+        @Setter
         @NotNull(message = "비밀번호는 필수 입력 값입니다.")
         @Pattern(regexp = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$", message = "Password must be at least 8 characters long and include at least one letter and one number")
         private String password;
@@ -30,18 +31,23 @@ public class UserRequest {
         @NotNull(message = "닉네임은 필수 입력 값입니다.")
         private String nickname;
 
+        @Setter
+        private Integer totalpoint;
+
+        @Setter
+        private String grade;
+
         public User toEntity(RoleEnum role) {
             return User.builder()
                     .nickname(nickname)
                     .email(email)
                     .password(password)
                     .role(role)
+                    .totalpoint(totalpoint)
+                    .grade(grade)
                     .build();
         }
 
-        public void setPassword(String encode) {
-            this.password = encode;
-        }
     }
 
     @NoArgsConstructor(access = AccessLevel.PROTECTED)
