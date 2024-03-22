@@ -37,17 +37,10 @@ public class CommunityResponse {
     @Getter
     @NoArgsConstructor(access = AccessLevel.PROTECTED)
     public static class viewquestionResponseDTO{
-        @Schema(description = "질문 제목")
-        private List<Question> title;
-        @Schema(description = "질문 내용")
-        private List<Question> content;
-        @Schema(description = "질문 고유 아이디")
-        private List<Question> id ;
+        private List<Question> questions;
 
         public viewquestionResponseDTO(List<Question> questions){
-            this.id=id;
-            this.title=title;
-            this.content=content;
+            this.questions=questions;
         }
     }
 
