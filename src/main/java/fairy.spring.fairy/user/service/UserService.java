@@ -18,32 +18,33 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserService {
 
-    private final UserRepository userRepository;
+//    private final UserRepository userRepository;
     private final TokenProvider tokenProvider;
     private final PasswordEncoder passwordEncoder;
 
 
 //    @Transactional(readOnly = true)
     public UserResponse.LoginResponseWithTokenDTO login(UserRequest.LoginRequestDTO request) {
-        User user = userRepository.findByEmail(request.getEmail())
-                .orElseThrow(() -> new Exception400(null, "회원가입을 해주세요."));
+//        User user = userRepository.findByEmail(request.getEmail())
+//                .orElseThrow(() -> new Exception400(null, "회원가입을 해주세요."));
 
-        if (!passwordEncoder.matches(request.getPassword(), user.getPassword())) {
-            throw new Exception400(null, "아이디 또는 비밀번호가 일치하지 않습니다.");
-        }
+//        if (!passwordEncoder.matches(request.getPassword(), user.getPassword())) {
+//            throw new Exception400(null, "아이디 또는 비밀번호가 일치하지 않습니다.");
+//        }
+//
+//        String token = tokenProvider.createToken(user.getEmail());
+//
+//        UserResponse.LoginResponseDTO loginResponseDTO = new UserResponse.LoginResponseDTO(user.getEmail(), user.getNickname(),  user.getId());
 
-        String token = tokenProvider.createToken(user.getEmail());
-
-        UserResponse.LoginResponseDTO loginResponseDTO = new UserResponse.LoginResponseDTO(user.getEmail(), user.getNickname(),  user.getId());
-
-        return new UserResponse.LoginResponseWithTokenDTO(loginResponseDTO, token);
+//        return new UserResponse.LoginResponseWithTokenDTO(loginResponseDTO, token);
+        return new UserResponse.LoginResponseWithTokenDTO(new UserResponse.LoginResponseDTO("", "", 1L), "");
     }
 
 //    @Transactional
     public void signup(UserRequest.SignupRequestDTO requestDTO) {
-        if(userRepository.existsByEmail(requestDTO.getEmail())){
-           throw new Exception400(null,"이미 가입된 사용자가 있습니다.");
-        }
+//        if(userRepository.existsByEmail(requestDTO.getEmail())){
+//           throw new Exception400(null,"이미 가입된 사용자가 있습니다.");
+//        }
         // 비밀번호 암호화
         requestDTO.setPassword(passwordEncoder.encode(requestDTO.getPassword()));
         requestDTO.setTotalpoint(0);

@@ -4,6 +4,7 @@ package fairy.spring.fairy.user.service;
 import fairy.spring.fairy.user.repository.TodoRepository;
 import fairy.spring.fairy.user.request.MypageRequest;
 import fairy.spring.fairy.user.response.MypageResponse;
+import java.util.Collections;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -21,12 +22,13 @@ public class Checklist {
          : 체크 리스트 목록 중 특정 아이템 조회
      */
 
-    private final TodoRepository todoRepository;
+//    private final TodoRepository todoRepository;
 //    @Transactional
     //체크 리스트 목록 전체 조회
     public MypageResponse.ChecklistViewResponseDTO searchAll(Long userid){
-        List<fairy.spring.fairy.user.domain.Checklist> checklist = todoRepository.findByUserid(userid);
-        return new MypageResponse.ChecklistViewResponseDTO(checklist);
+//        List<fairy.spring.fairy.user.domain.Checklist> checklist = todoRepository.findByUserid(userid);
+//        return new MypageResponse.ChecklistViewResponseDTO(checklist);
+        return new MypageResponse.ChecklistViewResponseDTO(Collections.emptyList());
     }
 //    @Transactional
     //체크 리스트 목록 중 특정 아이템 조회

@@ -41,7 +41,7 @@ public class UserResponse {
         }
 
         @Getter
-        @NoArgsConstructor(access = AccessLevel.PROTECTED)
+//        @NoArgsConstructor(access = AccessLevel.PROTECTED)
         public static class LoginResponseDTO {
                 @Schema(description = "회원 이메일", example = "example@example.com")
                 String email;

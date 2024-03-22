@@ -16,7 +16,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class MypageService {
 
-    private final UserRepository userRepository;
+//    private final UserRepository userRepository;
     private final GradeService gradeService;
 
 
@@ -24,8 +24,9 @@ public class MypageService {
     //프로필 조회
 //    @Transactional
     public MypageResponse.MypageinfoResponseDTO updateprofile(MypageRequest.MypageinfoRequestDTO mypageinfoRequestDTO){
-        User user = userRepository.findByEmail(mypageinfoRequestDTO.getEmail()).orElseThrow(() -> new Exception400(null, "로그인을 해주세요."));
-        gradeService.gradeup(user.getTotalpoint(),mypageinfoRequestDTO.getEmail());
-        return new MypageResponse.MypageinfoResponseDTO(user.getNickname(),user.getTotalpoint(),user.getGrade());
+//        User user = userRepository.findByEmail(mypageinfoRequestDTO.getEmail()).orElseThrow(() -> new Exception400(null, "로그인을 해주세요."));
+//        gradeService.gradeup(user.getTotalpoint(),mypageinfoRequestDTO.getEmail());
+//        return new MypageResponse.MypageinfoResponseDTO(user.getNickname(),user.getTotalpoint(),user.getGrade());
+        return new MypageResponse.MypageinfoResponseDTO("",0,"");
     }
 }
