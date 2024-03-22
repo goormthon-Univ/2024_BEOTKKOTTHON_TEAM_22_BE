@@ -49,6 +49,7 @@ public class S3UploadService {
 
         amazonS3.putObject(bucket, uniqueFileName, multipartFile.getInputStream(), metadata);
         return amazonS3.getUrl(bucket, uniqueFileName).toString();
+
     }
 
     public void deleteImage(String originalFilename)  {
