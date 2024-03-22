@@ -21,7 +21,7 @@ public class SwaggerConfig {
     public OpenAPI openAPI() {
         return new OpenAPI()
                 .components(new Components()
-                        .addSecuritySchemes(SECURITY_SCHEME_NAME, new io.swagger.v3.oas.models.security.SecurityScheme()
+                        .addSecuritySchemes(SECURITY_SCHEME_NAME, new SecurityScheme()
                                 .name(SECURITY_SCHEME_NAME)
                                 .type(SecurityScheme.Type.HTTP)
                                 .scheme("bearer")
@@ -30,7 +30,7 @@ public class SwaggerConfig {
                 .info(apiInfo());
     }
 
-    private io.swagger.v3.oas.models.info.Info apiInfo() {
+    private Info apiInfo() {
         return new Info()
                 .title("HouseworkFairy API")
                 .description("집안일 요정 서비스 API 명세서입니다.")
