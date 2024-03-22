@@ -7,7 +7,7 @@ import fairy.spring.fairy.Community.domain.Comment;
 import fairy.spring.fairy.config.errors.exception.Exception400;
 import fairy.spring.fairy.user.domain.User;
 import fairy.spring.fairy.user.repository.UserRepository;
-import jakarta.transaction.Transactional;
+//import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -17,51 +17,54 @@ import org.springframework.web.server.ResponseStatusException;
 @RequiredArgsConstructor
 public class CommentService {
 
-    private final UserRepository userRepository;
-    private final Commentrepository commentrepository;
+//    private final UserRepository userRepository;
+//    private final Commentrepository commentrepository;
 
 
 
 
     //댓글 등록
-    @Transactional
+//    @Transactional
     public CommunityResponse.CommentResponseDTO createComment(CommunityRequest.CommentRequestDTO commentRequestDTO) {
         System.out.println(commentRequestDTO.getEmail());
-        User user = userRepository.findByEmail(commentRequestDTO.getEmail())
-                .orElseThrow(() -> new Exception400(null, "로그인을 해주세요."));
-        Comment comment = Comment.builder()
-                .content(commentRequestDTO.getContent())
-                .type(commentRequestDTO.getType())
-                .itemid(commentRequestDTO.getItemid())
-                .email(commentRequestDTO.getEmail())
-                .build();
-        //포인트 적립
-        int currentpoint=user.getTotalpoint();
-        user.setTotalpoint(currentpoint+10);
-        userRepository.save(user);
-        return new CommunityResponse.CommentResponseDTO(commentrepository.save(comment));
+//        User user = userRepository.findByEmail(commentRequestDTO.getEmail())
+//                .orElseThrow(() -> new Exception400(null, "로그인을 해주세요."));
+//        Comment comment = Comment.builder()
+//                .content(commentRequestDTO.getContent())
+//                .type(commentRequestDTO.getType())
+//                .itemid(commentRequestDTO.getItemid())
+//                .email(commentRequestDTO.getEmail())
+//                .build();
+//        //포인트 적립
+//        int currentpoint=user.getTotalpoint();
+//        user.setTotalpoint(currentpoint+10);
+//        userRepository.save(user);
+//        return new CommunityResponse.CommentResponseDTO(commentrepository.save(comment));
+        return new CommunityResponse.CommentResponseDTO(new Comment());
     }
 
-    @Transactional
+//    @Transactional
     //댓글 조회
     public Comment searchByIdcomment(Long comment_id) {
-        return this.commentrepository.findById(comment_id)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+//        return this.commentrepository.findById(comment_id)
+//                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        return new Comment();
     }
 
-    @Transactional
+//    @Transactional
     // 댓글 수정
     public CommunityResponse.CommentResponseDTO updateByIdcomment(Long comment_id, CommunityRequest.CommentmodifyRequestDTO commentRequestDTO) {
         Comment comment = this.searchByIdcomment(comment_id);
         if (comment.getContent() != null ) {
             comment.setContent(commentRequestDTO.getContent());
         }
-        return new CommunityResponse.CommentResponseDTO(commentrepository.save(comment));
+//        return new CommunityResponse.CommentResponseDTO(commentrepository.save(comment));
+        return new CommunityResponse.CommentResponseDTO(new Comment());
     }
 
-    @Transactional
+//    @Transactional
     //댓글 삭제
     public void deleteById(Long id){
-        this.commentrepository.deleteById(id);
+//        this.commentrepository.deleteById(id);
     }
 }

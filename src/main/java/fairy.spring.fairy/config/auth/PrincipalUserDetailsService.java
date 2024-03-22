@@ -15,11 +15,12 @@ import java.util.Optional;
 @Service
 public class PrincipalUserDetailsService implements UserDetailsService {
 
-    private final UserRepository userRepository;
+//    private final UserRepository userRepository;
 
     @Override
     public UserDetails loadUserByUsername(String userid) throws UsernameNotFoundException {
-        Optional<User> optionalUser = userRepository.findByEmail(userid);
+//        Optional<User> optionalUser = userRepository.findByEmail(userid);
+        Optional<User> optionalUser = Optional.empty();
 
         if (optionalUser.isEmpty()) {
             return null;

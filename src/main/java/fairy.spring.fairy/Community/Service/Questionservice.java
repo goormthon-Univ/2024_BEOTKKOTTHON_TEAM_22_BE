@@ -6,45 +6,41 @@ import fairy.spring.fairy.Community.Request.CommunityRequest;
 import fairy.spring.fairy.Community.Response.CommunityResponse;
 import fairy.spring.fairy.Community.domain.Question;
 import fairy.spring.fairy.config.errors.exception.Exception400;
-import fairy.spring.fairy.user.domain.Checklist;
 import fairy.spring.fairy.user.domain.User;
 import fairy.spring.fairy.user.repository.UserRepository;
-import fairy.spring.fairy.user.response.MypageResponse;
-import jakarta.transaction.Transactional;
-import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
-import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
-
+import java.util.Collections;
 import java.util.List;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
 @RequiredArgsConstructor
 @Service
 public class Questionservice {
-    private final questionrepository questionrepository;
-    private final UserRepository userRepository;
+//    private final questionrepository questionrepository;
+//    private final UserRepository userRepository;
 
    //질문 등록
-    @Transactional
+//    @Transactional
     @JsonProperty
     public CommunityResponse.questionResponseDTO createQuestion(CommunityRequest.questionRequestDTO questionRequestDTO) {
-        User user = userRepository.findByEmail(questionRequestDTO.getEmail())
-                .orElseThrow(() -> new Exception400(null, "로그인을 해주세요."));
-        Question question = Question.builder()
-                .title(questionRequestDTO.getTitle())
-                .content(questionRequestDTO.getContent())
-                .email(questionRequestDTO.getEmail())
-                .imageurl(questionRequestDTO.getImageurl())
-                .nickname(user.getNickname())
-                .build();
-        //포인트 적립
-        int currentpoint=user.getTotalpoint();
-        user.setTotalpoint(currentpoint+10);
-        userRepository.save(user);
-        return new CommunityResponse.questionResponseDTO(questionrepository.save(question));
+//        User user = userRepository.findByEmail(questionRequestDTO.getEmail())
+//                .orElseThrow(() -> new Exception400(null, "로그인을 해주세요."));
+//        Question question = Question.builder()
+//                .title(questionRequestDTO.getTitle())
+//                .content(questionRequestDTO.getContent())
+//                .email(questionRequestDTO.getEmail())
+//                .imageurl(questionRequestDTO.getImageurl())
+//                .nickname(user.getNickname())
+//                .build();
+//        //포인트 적립
+//        int currentpoint=user.getTotalpoint();
+//        user.setTotalpoint(currentpoint+10);
+//        userRepository.save(user);
+//        return new CommunityResponse.questionResponseDTO(questionrepository.save(question));
+        return new CommunityResponse.questionResponseDTO(new Question());
     }
 
-    @Transactional
+//    @Transactional
     // 질문 수정
     public CommunityResponse.questionResponseDTO updateById(Long question_id, CommunityRequest.questionRequestDTO questionRequestDTO) {
         Question question = this.searchById(question_id);
@@ -53,21 +49,24 @@ public class Questionservice {
             question.setContent(questionRequestDTO.getContent());
             question.setImageurl(questionRequestDTO.getImageurl());
         }
-        return new CommunityResponse.questionResponseDTO(questionrepository.save(question));
+//        return new CommunityResponse.questionResponseDTO(questionrepository.save(question));
+        return new CommunityResponse.questionResponseDTO(question);
     }
 
-    @Transactional
+//    @Transactional
     //질문 조회
     public Question searchById(Long question_id) {
-        return this.questionrepository.findById(question_id)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        return new Question();
+//        return this.questionrepository.findById(question_id)
+//                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 
-    @Transactional
+//    @Transactional
     //질문 목록 전체 조회
     public List<Question> searchAll(){
 
-        return (List<Question>) new CommunityResponse.viewquestionResponseDTO(questionrepository.findAll());
+//        return (List<Question>) new CommunityResponse.viewquestionResponseDTO(questionrepository.findAll());
+        return (List<Question>) new CommunityResponse.viewquestionResponseDTO(Collections.emptyList());
     }
 }
 

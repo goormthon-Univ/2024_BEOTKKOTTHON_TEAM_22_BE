@@ -2,16 +2,14 @@ package fairy.spring.fairy.Community.Service;
 
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.model.ObjectMetadata;
-import jakarta.transaction.Transactional;
-import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 
 @RequiredArgsConstructor
@@ -21,7 +19,6 @@ public class S3UploadService {
 
     @Value("${bucket}")
     private String bucket;
-    @Transactional
     public List<String> uploadMultipleFiles(List<MultipartFile> multipartFiles) throws IOException {
         List<String> fileUrls = new ArrayList<>();
 
@@ -33,7 +30,6 @@ public class S3UploadService {
 
         return fileUrls;
     }
-    @Transactional
     public String saveFile(MultipartFile multipartFile) throws IOException {
         String originalFilename = multipartFile.getOriginalFilename();
         // 확장자를 얻기 위해 파일 이름을 "." 기준으로 분리하기

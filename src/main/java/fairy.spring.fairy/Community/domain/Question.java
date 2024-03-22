@@ -1,35 +1,35 @@
 package fairy.spring.fairy.Community.domain;
 
-import jakarta.persistence.*;
-import lombok.*;
-import org.springframework.web.multipart.MultipartFile;
-
 import java.util.List;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 
 @Setter
 @Getter
-@Entity
+//@Entity
 @NoArgsConstructor
 public class Question {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
 
-    @Column(nullable = false)
+//    @Column(nullable = false)
     private String title;
 
-    @Column(nullable = false)
+//    @Column(nullable = false)
     private String content;
 
 
-    @Column(nullable = false)
+//    @Column(nullable = false)
     private String email;
 
-    @Column(nullable = true)
+//    @Column(nullable = true)
     private List<String> imageurl;
 
-    @Column(nullable = false)
+//    @Column(nullable = false)
     private String nickname;
 
     @Builder

@@ -1,43 +1,43 @@
 package fairy.spring.fairy.user.domain;
 import fairy.spring.fairy.config.utils.MetaData;
-import jakarta.persistence.*;
+//import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.annotations.SQLDelete;
-import org.hibernate.annotations.SQLRestriction;
+//import org.hibernate.annotations.SQLDelete;
+//import org.hibernate.annotations.SQLRestriction;
 import org.springframework.stereotype.Component;
 
 @Getter
 @Setter
 @Component
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@SQLRestriction("deleted_at IS NULL")
-@SQLDelete(sql = "UPDATE users SET deleted_at = CURRENT_TIMESTAMP, is_deleted = TRUE where id = ?")
-@Entity
-@Table(name = "users")
+//@SQLRestriction("deleted_at IS NULL")
+//@SQLDelete(sql = "UPDATE users SET deleted_at = CURRENT_TIMESTAMP, is_deleted = TRUE where id = ?")
+//@Entity
+//@Table(name = "users")
 public class User extends MetaData {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "email", nullable = false, unique = true)
+//    @Column(name = "email", nullable = false, unique = true)
     private String email;
 
-    @Column(name = "password", nullable = false, unique = true)
+//    @Column(name = "password", nullable = false, unique = true)
     private String password;
 
 
 
-    @Column(name = "totalpoint")
+//    @Column(name = "totalpoint")
     private int totalpoint;
 
-    @Column(name = "nickname", nullable = false)
+//    @Column(name = "nickname", nullable = false)
     private String nickname;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name="role")
+//    @Enumerated(EnumType.STRING)
+//    @Column(name="role")
     private RoleEnum role;
 
-    @Column(name = "grade", nullable = false)
+//    @Column(name = "grade", nullable = false)
     private String grade;
 
 

@@ -1,33 +1,24 @@
 package fairy.spring.fairy.config.utils;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.EntityListeners;
-import jakarta.persistence.MappedSuperclass;
+import java.time.LocalDateTime;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
-import org.hibernate.annotations.ColumnDefault;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-
-import java.time.LocalDateTime;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@MappedSuperclass
-@EntityListeners(AuditingEntityListener.class)
+//@MappedSuperclass
+//@EntityListeners(AuditingEntityListener.class)
 public class MetaData {
-    @CreatedDate
-    @Column(nullable = false)
+    //    @CreatedDate
+//    @Column(nullable = false)
     private LocalDateTime createdAt;
 
-    @LastModifiedDate
+    //    @LastModifiedDate
     private LocalDateTime updatedAt;
 
     private LocalDateTime deletedAt;
 
-    @ColumnDefault("false")
+    //    @ColumnDefault("false")
     private boolean isDeleted;
 }

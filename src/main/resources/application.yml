@@ -5,21 +5,21 @@ server:
       force: true
   port: 5000
 spring:
-  datasource:
-    url: jdbc:mariadb://localhost:3300/user
-    driver-class-name: org.mariadb.jdbc.Driver
-    username: root
-    password: 3642
-  jpa:
-    hibernate:
-      dialect: org.hibernate.dialect.MariaDBDialect
-      ddl-auto: create
-    show-sql: true
-    properties:
-      hibernate:
-        format_sql: true
-      default_batch_fetch_size: 100
-    open-in-view: false
+#  datasource:
+#    url: jdbc:mariadb://localhost:3300/user
+#    driver-class-name: org.mariadb.jdbc.Driver
+#    username: root
+#    password: 3642
+#  jpa:
+#    hibernate:
+#      dialect: org.hibernate.dialect.MariaDBDialect
+#      ddl-auto: create
+#    show-sql: true
+#    properties:
+#      hibernate:
+#        format_sql: true
+#      default_batch_fetch_size: 100
+#    open-in-view: false
   web:
     resources:
       add-mappings: false

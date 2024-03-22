@@ -4,13 +4,9 @@ package fairy.spring.fairy.user.service;
 import fairy.spring.fairy.user.repository.TodoRepository;
 import fairy.spring.fairy.user.request.MypageRequest;
 import fairy.spring.fairy.user.response.MypageResponse;
-import jakarta.transaction.Transactional;
-import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
-import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
-
 import java.util.List;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
 
 @RequiredArgsConstructor
@@ -26,19 +22,20 @@ public class Checklist {
      */
 
     private final TodoRepository todoRepository;
-    @Transactional
+//    @Transactional
     //체크 리스트 목록 전체 조회
     public MypageResponse.ChecklistViewResponseDTO searchAll(Long userid){
         List<fairy.spring.fairy.user.domain.Checklist> checklist = todoRepository.findByUserid(userid);
         return new MypageResponse.ChecklistViewResponseDTO(checklist);
     }
-    @Transactional
+//    @Transactional
     //체크 리스트 목록 중 특정 아이템 조회
     public fairy.spring.fairy.user.domain.Checklist searchById(Long id){
-        return this.todoRepository.findById(id)
-                .orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        return new fairy.spring.fairy.user.domain.Checklist(id, "title", true, 1L);
+//        return this.todoRepository.findById(id)
+//                .orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
-    @Transactional
+//    @Transactional
     //체크 리스트 목록에 아이템 추가
     public MypageResponse.TodolistResponseDTO add(MypageRequest.TodolistRequestDTO todolistRequestDTO,Long userid){
         fairy.spring.fairy.user.domain.Checklist checklist = fairy.spring.fairy.user.domain.Checklist.builder()
@@ -46,21 +43,23 @@ public class Checklist {
                 .completed(todolistRequestDTO.getCompleted())
                 .userid(userid)
                 .build();
-        return new MypageResponse.TodolistResponseDTO(todoRepository.save(checklist));
+//        return new MypageResponse.TodolistResponseDTO(todoRepository.save(checklist));
+        return new MypageResponse.TodolistResponseDTO(checklist);
     }
-    @Transactional
+//    @Transactional
     // 체크 리스트 목록에 아이템 수정
     public MypageResponse.TodolistResponseDTO updateById(Long id, MypageRequest.TodolistRequestDTO todolistRequestDTO,Long userid){
         fairy.spring.fairy.user.domain.Checklist checklist = this.searchById(id);
         if(checklist.getTitle()!=null && checklist.getCompleted()!=null){
             checklist = new fairy.spring.fairy.user.domain.Checklist(id, todolistRequestDTO.getTitle(), todolistRequestDTO.getCompleted(),userid);
         }
-        return new MypageResponse.TodolistResponseDTO(todoRepository.save(checklist));
+        return new MypageResponse.TodolistResponseDTO(checklist);
+//        return new MypageResponse.TodolistResponseDTO(todoRepository.save(checklist));
     }
-    @Transactional
+//    @Transactional
     //체크 리스트 목록에 아이템 삭제
     public void deleteById(Long id){
-        this.todoRepository.deleteById(id);
+//        this.todoRepository.deleteById(id);
     }
 
 }

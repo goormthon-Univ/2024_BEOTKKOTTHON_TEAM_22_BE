@@ -6,7 +6,7 @@ import fairy.spring.fairy.user.domain.User;
 import fairy.spring.fairy.user.repository.UserRepository;
 import fairy.spring.fairy.user.request.MypageRequest;
 import fairy.spring.fairy.user.response.MypageResponse;
-import jakarta.transaction.Transactional;
+//import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -22,7 +22,7 @@ public class MypageService {
 
 
     //프로필 조회
-    @Transactional
+//    @Transactional
     public MypageResponse.MypageinfoResponseDTO updateprofile(MypageRequest.MypageinfoRequestDTO mypageinfoRequestDTO){
         User user = userRepository.findByEmail(mypageinfoRequestDTO.getEmail()).orElseThrow(() -> new Exception400(null, "로그인을 해주세요."));
         gradeService.gradeup(user.getTotalpoint(),mypageinfoRequestDTO.getEmail());

@@ -11,7 +11,7 @@ import fairy.spring.fairy.user.response.UserResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+//import org.springframework.transaction.annotation.Transactional;
 
 
 @RequiredArgsConstructor
@@ -23,7 +23,7 @@ public class UserService {
     private final PasswordEncoder passwordEncoder;
 
 
-    @Transactional(readOnly = true)
+//    @Transactional(readOnly = true)
     public UserResponse.LoginResponseWithTokenDTO login(UserRequest.LoginRequestDTO request) {
         User user = userRepository.findByEmail(request.getEmail())
                 .orElseThrow(() -> new Exception400(null, "회원가입을 해주세요."));
@@ -39,7 +39,7 @@ public class UserService {
         return new UserResponse.LoginResponseWithTokenDTO(loginResponseDTO, token);
     }
 
-    @Transactional
+//    @Transactional
     public void signup(UserRequest.SignupRequestDTO requestDTO) {
         if(userRepository.existsByEmail(requestDTO.getEmail())){
            throw new Exception400(null,"이미 가입된 사용자가 있습니다.");
@@ -53,7 +53,7 @@ public class UserService {
 
 
         // 저장
-        userRepository.save(newUser);
+//        userRepository.save(newUser);
 
 
     }

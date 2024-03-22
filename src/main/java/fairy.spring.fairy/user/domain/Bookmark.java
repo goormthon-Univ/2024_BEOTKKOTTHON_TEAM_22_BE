@@ -1,25 +1,24 @@
 package fairy.spring.fairy.user.domain;
 
 import fairy.spring.fairy.home.entity.Tip;
-import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
-@Entity
+//@Entity
 public class Bookmark {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id")
+//    @ManyToOne
+//    @JoinColumn(name = "user_id")
     private User user;
 
-    @ManyToOne
-    @JoinColumn(name = "tip_id")
+//    @ManyToOne
+//    @JoinColumn(name = "tip_id")
     @Setter
     private Tip tip;
 
