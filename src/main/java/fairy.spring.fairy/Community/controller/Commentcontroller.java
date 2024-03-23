@@ -32,10 +32,12 @@ public class Commentcontroller {
         return ResponseEntity.status(HttpStatus.OK).body(ApiResponseBuilder.success(commentResponseDTO));
     }
 
+
+
     @Operation(summary = "댓글 수정", description = "댓글을 수정합니다.")
     @ApiResponse(responseCode = "200", description = "댓글 수정 성공")
     @PatchMapping("/community/comment/{comment_id}")
-    public ResponseEntity<?> update(@PathVariable("comment_id") Long comment_id, CommunityRequest.CommentmodifyRequestDTO commentRequestDTO) {
+    public ResponseEntity<?> update(@PathVariable("comment_id") Long comment_id, CommunityRequest.CommentmodifyRequestDTO commentRequestDTO, Errors errors) {
         CommunityResponse.CommentResponseDTO commentResponseDTO =  commentService.updateByIdcomment(comment_id,commentRequestDTO);
         return ResponseEntity.status(HttpStatus.OK).body(ApiResponseBuilder.successWithNoContent());
     }
