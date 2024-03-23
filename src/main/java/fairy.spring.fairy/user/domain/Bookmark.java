@@ -1,50 +1,37 @@
 package fairy.spring.fairy.user.domain;
 
+import fairy.spring.fairy.Community.domain.Question;
 import fairy.spring.fairy.home.entity.Tip;
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
+@Getter
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
 @Entity
+@Setter
 public class Bookmark {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
+    @Column(nullable = false)
+    private Boolean bookmarkstatus;
 
-    @ManyToOne
-    @JoinColumn(name = "tip_id")
-    @Setter
-    private Tip tip;
+    @Column(nullable = false)
+    private Long questionid;
 
-    public Bookmark(User user, Tip tip) {
-        this.user = user;
-        this.tip = tip;
+    @Column(nullable = false)
+    private Long tipid;
+
+
+
+    @Builder
+    public Bookmark(Boolean bookmarkstatus,Long questionid,Long tipid) {
+        this.bookmarkstatus=bookmarkstatus;
+        this.questionid=questionid;
+        this.tipid=tipid;
     }
 
-    public Long getId() {
-        return id;
-    }
 
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public Tip getTip() {
-        return tip;
-    }
-
-    public void setTip(Tip tip) {
-        this.tip = tip;
-    }
 }

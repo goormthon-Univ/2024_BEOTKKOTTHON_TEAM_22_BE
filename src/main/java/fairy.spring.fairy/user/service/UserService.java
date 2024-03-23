@@ -44,16 +44,17 @@ public class UserService {
         if(userRepository.existsByEmail(requestDTO.getEmail())){
            throw new Exception400(null,"이미 가입된 사용자가 있습니다.");
         }
+        requestDTO.setEmail(requestDTO.getEmail());
         // 비밀번호 암호화
         requestDTO.setPassword(passwordEncoder.encode(requestDTO.getPassword()));
         requestDTO.setTotalpoint(0);
         requestDTO.setGrade("Level 1");
 
-        User newUser =requestDTO.toEntity(RoleEnum.USER);
+
 
 
         // 저장
-        userRepository.save(newUser);
+        userRepository.save(requestDTO.toEntity(RoleEnum.USER));
 
 
     }

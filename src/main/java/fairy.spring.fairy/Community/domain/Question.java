@@ -5,6 +5,7 @@ import jakarta.persistence.criteria.CriteriaBuilder;
 import lombok.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 
@@ -21,7 +22,7 @@ public class Question {
     private String title;
 
     @Column(nullable = false)
-    private String content;
+    private String Content;
 
 
     @Column(nullable = false)
@@ -43,17 +44,17 @@ public class Question {
     private Integer commentcount;
 
     @Column(nullable = false)
-    private String timestamp;
+    private LocalDateTime timestamp;
 
 
     private boolean bookmarkstatus;
 
 
     @Builder
-    public Question(Long id, String title, String content, String email,List<String> imageurl,String nickname,String category,Integer bookmarkcount,Integer commentcount,String timestamp,boolean bookmarkstatus) {
+    public Question(Long id, String title, String Content, String email,List<String> imageurl,String nickname,String category,Integer bookmarkcount,Integer commentcount,LocalDateTime timestamp,boolean bookmarkstatus) {
         this.id = id;
         this.title = title;
-        this.content = content;
+        this.Content = Content;
         this.email=email;
         this.imageurl=imageurl;
         this.nickname=nickname;

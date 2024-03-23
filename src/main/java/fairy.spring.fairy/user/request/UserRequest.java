@@ -16,10 +16,11 @@ import org.springframework.stereotype.Component;
 public class UserRequest {
 
     @Getter
-    @NoArgsConstructor(access = AccessLevel.PROTECTED)
+    @NoArgsConstructor
     @Component
     public static class SignupRequestDTO {
         @NotNull(message = "이메일은 필수 입력 값입니다.")
+        @Setter
         @Pattern(regexp = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}$", message = "Invalid email format")
         private String email;
 
@@ -28,6 +29,7 @@ public class UserRequest {
         @Pattern(regexp = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$", message = "Password must be at least 8 characters long and include at least one letter and one number")
         private String password;
 
+        @Setter
         @NotNull(message = "닉네임은 필수 입력 값입니다.")
         private String nickname;
 
@@ -50,7 +52,7 @@ public class UserRequest {
 
     }
 
-    @NoArgsConstructor(access = AccessLevel.PROTECTED)
+    @NoArgsConstructor
     @Getter
     public static class LoginRequestDTO {
         @NotNull(message = "이메일은 필수 입력 값입니다.")
@@ -65,18 +67,11 @@ public class UserRequest {
         }
     }
 
-    public static class BookmarkRequestDTO {
-        private Long userId;
-        private Long tipId;
 
-        public BookmarkRequestDTO(Long userId, Long tipId) {
-            this.userId = userId;
-            this.tipId = tipId;
-        }
 
 
     }
-}
+
 
 
 

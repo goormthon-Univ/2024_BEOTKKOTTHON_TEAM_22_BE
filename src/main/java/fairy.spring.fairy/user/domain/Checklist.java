@@ -7,7 +7,7 @@ import org.hibernate.annotations.SQLRestriction;
 
 @Getter
 @Entity
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+
 @Setter
 public class Checklist {
     @Id

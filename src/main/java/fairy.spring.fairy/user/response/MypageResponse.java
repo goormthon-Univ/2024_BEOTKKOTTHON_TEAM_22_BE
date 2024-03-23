@@ -10,7 +10,7 @@ import java.util.List;
 
 public class MypageResponse {
     @Getter
-    @NoArgsConstructor(access = AccessLevel.PROTECTED)
+    @NoArgsConstructor
     public static class MypageinfoResponseDTO{
         @Schema(description = "닉네임", example = "chee0630")
         private String nickname;
@@ -27,7 +27,7 @@ public class MypageResponse {
     }
 
     @Getter
-    @NoArgsConstructor(access = AccessLevel.PROTECTED)
+    @NoArgsConstructor
     public static class TodolistResponseDTO{
         @Schema(description = "체크 리스트 제목 ", example = "설거지 하기 ")
         private String Title;
@@ -40,7 +40,7 @@ public class MypageResponse {
     }
 
     @Getter
-    @NoArgsConstructor(access = AccessLevel.PROTECTED)
+    @NoArgsConstructor
     public static class ChecklistViewResponseDTO{
         private List<Checklist> checklists;
 
@@ -50,8 +50,11 @@ public class MypageResponse {
     }
 
 
+    }
 
 
 
 
-}
+
+
+

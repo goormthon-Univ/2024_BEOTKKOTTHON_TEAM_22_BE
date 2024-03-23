@@ -9,7 +9,7 @@ import lombok.Setter;
 public class UserResponse {
 
         @Getter
-        @NoArgsConstructor(access = AccessLevel.PROTECTED)
+        @NoArgsConstructor
         public static class SignupResponseDTO {
                 @Schema(description = "이메일", example = "example@example.com")
                 String email;
@@ -27,7 +27,7 @@ public class UserResponse {
         }
 
         @Getter
-        @NoArgsConstructor(access = AccessLevel.PROTECTED)
+        @NoArgsConstructor
         public static class LoginResponseWithTokenDTO {
                 @Schema(description = "로그인 응답", implementation = LoginResponseDTO.class)
                 private LoginResponseDTO loginResponseDTO;
@@ -41,7 +41,7 @@ public class UserResponse {
         }
 
         @Getter
-        @NoArgsConstructor(access = AccessLevel.PROTECTED)
+        @NoArgsConstructor
         public static class LoginResponseDTO {
                 @Schema(description = "회원 이메일", example = "example@example.com")
                 String email;

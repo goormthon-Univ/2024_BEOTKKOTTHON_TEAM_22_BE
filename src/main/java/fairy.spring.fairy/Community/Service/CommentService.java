@@ -26,7 +26,6 @@ public class CommentService {
     //댓글 등록
     @Transactional
     public CommunityResponse.CommentResponseDTO createComment(CommunityRequest.CommentRequestDTO commentRequestDTO) {
-        System.out.println(commentRequestDTO.getEmail());
         User user = userRepository.findByEmail(commentRequestDTO.getEmail())
                 .orElseThrow(() -> new Exception400(null, "로그인을 해주세요."));
         Comment comment = Comment.builder()
