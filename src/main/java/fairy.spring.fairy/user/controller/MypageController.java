@@ -26,7 +26,7 @@ public class MypageController {
 
     @Operation(summary = "프로필 조회", description = "프로필을 조회합니다.")
     @ApiResponse(responseCode = "200", description = "프로필 조회 성공")
-    @PostMapping(value = "/mypage")
+    @GetMapping(value = "/mypage")
     public ResponseEntity<?> getProfile(@RequestBody MypageRequest.MypageinfoRequestDTO mypageinfoRequestDTO) {
         // jwt 헤더에 담기
         MypageResponse.MypageinfoResponseDTO mypageinfoResponseDTO = mypageService.updateprofile(mypageinfoRequestDTO);
