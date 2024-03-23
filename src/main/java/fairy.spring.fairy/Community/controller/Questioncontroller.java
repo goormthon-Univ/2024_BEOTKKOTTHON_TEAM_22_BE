@@ -5,6 +5,7 @@ import fairy.spring.fairy.Community.Response.CommunityResponse;
 import fairy.spring.fairy.Community.Service.Questionservice;
 import fairy.spring.fairy.Community.domain.Question;
 import fairy.spring.fairy.config.utils.ApiResponseBuilder;
+import fairy.spring.fairy.user.response.MypageResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
@@ -51,7 +52,7 @@ public class Questioncontroller {
     @ApiResponse(responseCode = "200", description = "질문 조회 성공")
     @GetMapping("/community/items")
     public ResponseEntity<?> viewQuestion(){
-        List<Question> viewquestionResponseDTO=questionservice.searchAll();
+        CommunityResponse.viewquestionResponseDTO viewquestionResponseDTO =questionservice.searchAll();
         return  ResponseEntity.status(HttpStatus.OK).body(ApiResponseBuilder.success(viewquestionResponseDTO));
     }
 

@@ -24,6 +24,7 @@ public class Questionservice {
     private final questionrepository questionrepository;
     private final UserRepository userRepository;
 
+
    //질문 등록
     @Transactional
     @JsonProperty
@@ -36,6 +37,8 @@ public class Questionservice {
                 .email(questionRequestDTO.getEmail())
                 .imageurl(questionRequestDTO.getImageurl())
                 .nickname(user.getNickname())
+                .category("질문")
+
                 .build();
         //포인트 적립
         int currentpoint=user.getTotalpoint();
@@ -65,9 +68,9 @@ public class Questionservice {
 
     @Transactional
     //질문 목록 전체 조회
-    public List<Question> searchAll(){
-
-        return (List<Question>) new CommunityResponse.viewquestionResponseDTO(questionrepository.findAll());
+    public CommunityResponse.viewquestionResponseDTO searchAll(){
+        List<Question> questions = questionrepository.findAll();
+        return new CommunityResponse.viewquestionResponseDTO(questions);
     }
 }
 
