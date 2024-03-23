@@ -36,6 +36,7 @@ public class Questionservice {
         User user = userRepository.findByEmail(questionimageRequestDTO.getEmail())
                 .orElseThrow(() -> new Exception400(null, "로그인을 해주세요."));
         LocalDateTime currentTime = LocalDateTime.now();
+        List<String> url =s3UploadService.uploadMultipleFiles(questionimageRequestDTO.getImageurl());
         Question question = Question.builder()
                 .title(questionimageRequestDTO.getTitle())
                 .content(questionimageRequestDTO.getContent())
@@ -46,13 +47,14 @@ public class Questionservice {
                 .bookmarkcount(0)
                 .commentcount(0)
                 .bookmarkstatus(false)
+                .profileurl(user.getProfileimage())
+                .url(url)
                 .build();
         //포인트 적립
         int currentpoint=user.getTotalpoint();
         user.setTotalpoint(currentpoint+10);
         userRepository.save(user);
         questionrepository.save(question);
-       List<String> url =s3UploadService.uploadMultipleFiles(questionimageRequestDTO.getImageurl());
         return new CommunityResponse.QuestionResponseDTO(questionrepository.save(question),url);
     }
 

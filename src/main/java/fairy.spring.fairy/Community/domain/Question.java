@@ -50,9 +50,13 @@ public class Question {
 
     private boolean bookmarkstatus;
 
+    private String profileurl;
+
+    private List<String> url;
+
 
     @Builder
-    public Question(Long id, String title, String content, String email,String nickname,String category,Integer bookmarkcount,Integer commentcount,LocalDateTime timestamp,boolean bookmarkstatus) {
+    public Question(Long id, String title, String content, String email,String nickname,String category,Integer bookmarkcount,Integer commentcount,LocalDateTime timestamp,boolean bookmarkstatus,String profileurl,List<String> url) {
         this.id = id;
         this.title = title;
         this.content= content;
@@ -63,6 +67,8 @@ public class Question {
         this.commentcount=commentcount;
         this.timestamp=timestamp;
         this.bookmarkstatus=bookmarkstatus;
+        this.profileurl=profileurl;
+        this.url=url;
 
     }
 

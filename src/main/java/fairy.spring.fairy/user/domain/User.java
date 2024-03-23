@@ -40,13 +40,16 @@ public class User extends MetaData {
     @Column(name = "grade", nullable = false)
     private String grade;
 
+    @Column(name = "profile image", nullable = false)
+    private String profileimage;
+
 
 
 
 
 
     @Builder
-    public User(String email, String password, String nickname, RoleEnum role, int totalpoint,Long id,String grade) {
+    public User(String email, String password, String nickname, RoleEnum role, int totalpoint,Long id,String grade,String profileimage) {
         this.role = role;
         this.email = email;
         this.nickname = nickname;
@@ -54,5 +57,6 @@ public class User extends MetaData {
         this.totalpoint=totalpoint;
         this.id=id;
         this.grade=grade;
+        this.profileimage=profileimage;
     }
 }
