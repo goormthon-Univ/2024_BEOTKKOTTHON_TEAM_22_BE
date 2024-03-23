@@ -18,10 +18,7 @@ public class Tip {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String title;
-
-
 
     @ManyToOne
     @JoinColumn(name = "category_id") // 카테고리와의 관계를 나타내는 외래 키

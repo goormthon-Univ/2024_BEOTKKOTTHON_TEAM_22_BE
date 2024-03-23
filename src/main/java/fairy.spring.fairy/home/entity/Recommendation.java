@@ -1,13 +1,10 @@
 package fairy.spring.fairy.home.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
+//import lombok.Setter;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -18,6 +15,10 @@ public class Recommendation {
     private Long id;
     private String name;
     private String description;
+
+    @ManyToOne
+    @JoinColumn(name = "tip_id")
+    private Tip tip;
 
     // 생성자, 게터, 세터
 }
