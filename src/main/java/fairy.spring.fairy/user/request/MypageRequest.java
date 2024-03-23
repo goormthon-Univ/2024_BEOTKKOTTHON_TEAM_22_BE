@@ -9,13 +9,9 @@ import lombok.Setter;
 public class MypageRequest {
 
     @Getter
-//    @NoArgsConstructor(access = AccessLevel.PROTECTED)
-    public class MypageinfoRequestDTO {
+    @NoArgsConstructor(access = AccessLevel.PROTECTED)
+    public static class MypageinfoRequestDTO {
         private String email;
-
-        public MypageinfoRequestDTO(String email) {
-            this.email = email;
-        }
     }
 
     @Getter
