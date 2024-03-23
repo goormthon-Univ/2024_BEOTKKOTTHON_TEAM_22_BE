@@ -31,7 +31,7 @@ public class BookmarkController {
     @ApiResponse(responseCode = "201", description = "북마크 목록 생성 성공")
     @PostMapping("/question/bookmark/{quesionid}")
     public ResponseEntity<?> create(@PathVariable("questionid") Long questionid,@RequestBody MypageRequest.BookmarkRequestDTO bookmarkRequestDTO) {
-        bookmarkService.createBookmarkQuestion(bookmarkRequestDTO);
+        bookmarkService.createBookmarkQuestion(bookmarkRequestDTO, questionid);
         return ResponseEntity.status(HttpStatus.OK).body(ApiResponseBuilder.successWithNoContent());
     }
 
