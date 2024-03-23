@@ -22,7 +22,7 @@ public class Question {
     private String title;
 
     @Column(nullable = false)
-    private String Content;
+    private String content;
 
 
     @Column(nullable = false)
@@ -51,10 +51,10 @@ public class Question {
 
 
     @Builder
-    public Question(Long id, String title, String Content, String email,List<String> imageurl,String nickname,String category,Integer bookmarkcount,Integer commentcount,LocalDateTime timestamp,boolean bookmarkstatus) {
+    public Question(Long id, String title, String content, String email,List<String> imageurl,String nickname,String category,Integer bookmarkcount,Integer commentcount,LocalDateTime timestamp,boolean bookmarkstatus) {
         this.id = id;
         this.title = title;
-        this.Content = Content;
+        this.content= content;
         this.email=email;
         this.imageurl=imageurl;
         this.nickname=nickname;
