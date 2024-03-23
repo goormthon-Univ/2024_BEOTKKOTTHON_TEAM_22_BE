@@ -50,6 +50,7 @@ public class UserService {
         requestDTO.setPassword(passwordEncoder.encode(requestDTO.getPassword()));
         requestDTO.setTotalpoint(0);
         requestDTO.setGrade("Level 1");
+        requestDTO.setProfileurl("https://www.figma.com/file/s1l3bAHl3j970WVC0W8qDd/Untitled?type=design&node-id=587-106&mode=design&t=isL2e9pIhuNETqpS-4");
 
 
 

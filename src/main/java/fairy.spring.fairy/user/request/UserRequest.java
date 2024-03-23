@@ -39,6 +39,9 @@ public class UserRequest {
         @Setter
         private String grade;
 
+        @Setter
+        private String profileurl;
+
         public User toEntity(RoleEnum role) {
             return User.builder()
                     .nickname(nickname)
@@ -47,6 +50,7 @@ public class UserRequest {
                     .role(role)
                     .totalpoint(totalpoint)
                     .grade(grade)
+                    .profileimage(profileurl)
                     .build();
         }
 
