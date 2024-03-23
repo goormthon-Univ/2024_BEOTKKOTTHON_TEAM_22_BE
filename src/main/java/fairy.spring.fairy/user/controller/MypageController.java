@@ -6,7 +6,6 @@ import fairy.spring.fairy.user.request.MypageRequest;
 import fairy.spring.fairy.user.response.MypageResponse;
 import fairy.spring.fairy.user.service.MypageService;
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletResponse;

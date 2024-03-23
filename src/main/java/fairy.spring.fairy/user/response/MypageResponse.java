@@ -1,5 +1,6 @@
 package fairy.spring.fairy.user.response;
 
+import fairy.spring.fairy.user.domain.Bookmark;
 import fairy.spring.fairy.user.domain.Checklist;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AccessLevel;
@@ -46,6 +47,16 @@ public class MypageResponse {
 
         public ChecklistViewResponseDTO(List<Checklist> checklists){
            this.checklists=checklists;
+        }
+    }
+
+    @Getter
+    @NoArgsConstructor
+    public static class BookmarkViewResponseDTO{
+        private List<Bookmark> bookmarks;
+
+        public BookmarkViewResponseDTO(List<Bookmark> bookmarks){
+            this.bookmarks=bookmarks;
         }
     }
 

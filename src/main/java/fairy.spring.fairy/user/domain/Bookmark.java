@@ -24,13 +24,16 @@ public class Bookmark {
     @Column(nullable = false)
     private Long tipid;
 
+    private Long userid;
+
 
 
     @Builder
-    public Bookmark(Boolean bookmarkstatus,Long questionid,Long tipid) {
+    public Bookmark(Boolean bookmarkstatus,Long questionid,Long tipid,Long userid) {
         this.bookmarkstatus=bookmarkstatus;
         this.questionid=questionid;
         this.tipid=tipid;
+        this.userid=userid;
     }
 
 

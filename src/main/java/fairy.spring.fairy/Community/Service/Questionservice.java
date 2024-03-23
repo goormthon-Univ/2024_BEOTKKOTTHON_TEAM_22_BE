@@ -43,7 +43,7 @@ public class Questionservice {
                 .Content(questionRequestDTO.getContent())
                 .email(questionRequestDTO.getEmail())
                 .imageurl(questionRequestDTO.getImageurl())
-                .nickname(user.getNickname())
+                .nickname(questionRequestDTO.getNickname())
                 .category("질문")
                 .timestamp(currentTime)
                 .bookmarkcount(0)

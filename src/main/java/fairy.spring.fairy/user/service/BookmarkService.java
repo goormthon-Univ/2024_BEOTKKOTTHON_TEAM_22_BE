@@ -4,16 +4,21 @@ import fairy.spring.fairy.Community.domain.Question;
 import fairy.spring.fairy.config.errors.exception.Exception400;
 import fairy.spring.fairy.home.entity.Tip;
 import fairy.spring.fairy.user.domain.Bookmark;
+import fairy.spring.fairy.user.domain.Checklist;
 import fairy.spring.fairy.user.domain.User;
 import fairy.spring.fairy.user.repository.BookmarkRepository;
 import fairy.spring.fairy.user.repository.UserRepository;
 import fairy.spring.fairy.user.request.MypageRequest;
+import fairy.spring.fairy.user.response.MypageResponse;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+
 @RequiredArgsConstructor
 @Service
 public class BookmarkService {
@@ -37,6 +42,7 @@ public class BookmarkService {
         Bookmark bookmark = Bookmark.builder()
                 .bookmarkstatus(true)
                 .questionid(bookmarkRequestDTO.getQuestionid())
+                .userid(user.getId())
                 .build();
         return bookmarkRepository.save(bookmark);
 
@@ -49,5 +55,12 @@ public class BookmarkService {
     public void deleteBookmark(Long questionid){
         Bookmark bookmark = bookmarkRepository.findByQuestionid(questionid);
         bookmark.setBookmarkstatus(false);
+    }
+
+    @Transactional
+    //북마크 목록 전체 조회
+    public MypageResponse.BookmarkViewResponseDTO searchAll(Long userid){
+        List<Bookmark> bookmarks = bookmarkRepository.findByUserid(userid);
+        return new MypageResponse.BookmarkViewResponseDTO(bookmarks);
     }
 }

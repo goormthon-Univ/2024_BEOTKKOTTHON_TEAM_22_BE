@@ -48,6 +48,14 @@ public class BookmarkController {
         bookmarkService.deleteBookmark(questionid);
         return ResponseEntity.status(HttpStatus.OK).body(ApiResponseBuilder.successWithNoContent());
     }
+
+    @Operation(summary = "북마크 조회", description = "북마크를 조회합니다.")
+    @ApiResponse(responseCode = "200", description = "북마크 조회 성공")
+    @GetMapping(value = "/mypage/bookmark/{userid}")
+    public ResponseEntity<?> getProfile(@PathVariable("userid") Long userid) {
+        MypageResponse.BookmarkViewResponseDTO BookmarkViewResponseDTO1 = bookmarkService.searchAll(userid);
+        return ResponseEntity.status(HttpStatus.OK).body(ApiResponseBuilder.success(BookmarkViewResponseDTO1));
+    }
 }
 
 

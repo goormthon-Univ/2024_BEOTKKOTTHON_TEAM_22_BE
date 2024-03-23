@@ -14,30 +14,27 @@ public class CommunityRequest {
     @Getter
     public static class QuestionRequestDTO {
         @Getter
-        private String Title;
+        private String title;
         @Getter
-        private String Content;
+        private String content;
         @Getter
         private String email;
-        private List<String> Imageurl;
-
-        public List<String> Imageurl() {
-            return Imageurl;
-        }
+        private List<String> imageurl;
+        private String nickname;
 
 
-    }
-
-        /*
-
-        public questionRequestDTO(String email, String content,List<String> imageurl,String title) {
+        public QuestionRequestDTO(String email, String content, List<String> imageurl, String title,String nickname) {
             this.email = email;
             this.content=content;
             this.imageurl=imageurl;
             this.title=title;
+            this.nickname=nickname;
         }
 
-         */
+
+
+    }
+
 
 
 
