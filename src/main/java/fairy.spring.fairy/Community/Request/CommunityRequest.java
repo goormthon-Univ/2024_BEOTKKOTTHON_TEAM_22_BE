@@ -4,9 +4,10 @@ package fairy.spring.fairy.Community.Request;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.web.multipart.MultipartFile;
 
 
-
+import java.sql.Blob;
 import java.util.List;
 @NoArgsConstructor
 public class CommunityRequest {
@@ -19,17 +20,34 @@ public class CommunityRequest {
         private String content;
         @Getter
         private String email;
-        private List<String> imageurl;
 
 
 
-        public QuestionRequestDTO(String email, String content, List<String> imageurl, String title) {
+
+        public QuestionRequestDTO(String email, String content,  String title) {
             this.email = email;
             this.content=content;
-            this.imageurl=imageurl;
             this.title=title;
         }
 
+
+    }
+
+    @Getter
+    public static class QuestionimageRequestDTO {
+        @Getter
+        private List<MultipartFile> imageurl;
+        private  QuestionRequestDTO questionRequestDTO;
+
+
+
+
+
+
+        public QuestionimageRequestDTO(List<MultipartFile> imageurl,QuestionRequestDTO questionRequestDTO) {
+            this.imageurl = imageurl;
+            this.questionRequestDTO=questionRequestDTO;
+        }
 
 
     }

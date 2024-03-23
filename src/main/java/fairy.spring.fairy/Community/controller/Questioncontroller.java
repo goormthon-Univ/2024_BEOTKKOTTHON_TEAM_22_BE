@@ -2,6 +2,7 @@ package fairy.spring.fairy.Community.controller;
 
 import fairy.spring.fairy.Community.Request.CommunityRequest;
 import fairy.spring.fairy.Community.Response.CommunityResponse;
+import fairy.spring.fairy.Community.Service.QuestionDetailsService;
 import fairy.spring.fairy.Community.Service.Questionservice;
 import fairy.spring.fairy.config.utils.ApiResponseBuilder;
 import io.swagger.v3.oas.annotations.Operation;
@@ -24,13 +25,14 @@ import java.util.List;
 public class Questioncontroller {
 
     private final Questionservice questionservice;
+    private final QuestionDetailsService questionDetailsService;
 
     @Operation(summary = "질문 등록", description = "질문을 등록합니다.")
     @ApiResponse(responseCode = "200", description = "질문 등록 성공",
-            content = @Content(mediaType = "application/json"))
+            content = @Content(mediaType = "text/plain"))
     @PostMapping(value = "/community/question")
-    public ResponseEntity<?> createQuestion(@RequestBody @Valid CommunityRequest.QuestionRequestDTO questionRequestDTO) {
-        CommunityResponse.QuestionResponseDTO questionResponseDTO = questionservice.createQuestion(questionRequestDTO);
+    public ResponseEntity<?> createQuestion(@ModelAttribute CommunityRequest.QuestionimageRequestDTO questionimageRequestDTO) {
+        CommunityResponse.QuestionResponseDTO questionResponseDTO = questionservice.createQuestion(questionimageRequestDTO);
         return ResponseEntity.status(HttpStatus.OK).body(ApiResponseBuilder.success(questionResponseDTO));
     }
 
@@ -40,8 +42,8 @@ public class Questioncontroller {
     @Operation(summary = "질문 수정", description = "질문을 수정합니다.")
     @ApiResponse(responseCode = "200", description = "질문 수정 성공")
     @PatchMapping("/community/question/{question_id}")
-    public ResponseEntity<?> update(@PathVariable("question_id") Long question_id, CommunityRequest.QuestionRequestDTO questionRequestDTO) {
-        CommunityResponse.QuestionResponseDTO questionResponseDTO = questionservice.updateById(question_id,questionRequestDTO);
+    public ResponseEntity<?> update(@PathVariable("question_id") Long question_id, CommunityRequest.QuestionimageRequestDTO questionimageRequestDTO) {
+        CommunityResponse.QuestionResponseDTO questionResponseDTO = questionservice.updateById(question_id,questionimageRequestDTO);
         return ResponseEntity.status(HttpStatus.OK).body(ApiResponseBuilder.successWithNoContent());
     }
 
@@ -51,6 +53,14 @@ public class Questioncontroller {
     public ResponseEntity<?> viewQuestion(){
         CommunityResponse.viewquestionResponseDTO viewquestionResponseDTO =questionservice.searchAll();
         return  ResponseEntity.status(HttpStatus.OK).body(ApiResponseBuilder.success(viewquestionResponseDTO));
+    }
+
+    @Operation(summary = "질문 디테일 조회", description = "디테일한 질문전체를 조회합니다.")
+    @ApiResponse(responseCode = "200", description = "질문 조회 성공")
+    @GetMapping("/community/items/details")
+    public ResponseEntity<?> viewDetailQuestion(){
+        CommunityResponse.viewqdetailquestionResponseDTO viewqdetailquestionResponseDTO =questionDetailsService.searchdetailsAll();
+        return  ResponseEntity.status(HttpStatus.OK).body(ApiResponseBuilder.success(viewqdetailquestionResponseDTO));
     }
 
 
