@@ -20,15 +20,14 @@ public class CommunityRequest {
         @Getter
         private String email;
         private List<String> imageurl;
-        private String nickname;
 
 
-        public QuestionRequestDTO(String email, String content, List<String> imageurl, String title,String nickname) {
+
+        public QuestionRequestDTO(String email, String content, List<String> imageurl, String title) {
             this.email = email;
             this.content=content;
             this.imageurl=imageurl;
             this.title=title;
-            this.nickname=nickname;
         }
 
 

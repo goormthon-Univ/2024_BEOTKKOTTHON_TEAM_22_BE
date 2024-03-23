@@ -28,7 +28,7 @@ public class BookmarkService {
 
 
 
-    // 북마크 생성,
+    // 북마크 생성
     public Bookmark createBookmarkTip(Long tipid) {
         Bookmark bookmark = Bookmark.builder()
                 .bookmarkstatus(true)

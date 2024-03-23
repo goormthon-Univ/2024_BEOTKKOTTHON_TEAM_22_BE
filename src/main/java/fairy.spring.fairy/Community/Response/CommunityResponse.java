@@ -26,7 +26,7 @@ public class CommunityResponse {
             this.id= question.getId();
             this.email=question.getEmail();
             this.imageurl=question.getImageurl();
-            this.nickname=getNickname();
+            this.nickname=question.getNickname();
 
         }
     }

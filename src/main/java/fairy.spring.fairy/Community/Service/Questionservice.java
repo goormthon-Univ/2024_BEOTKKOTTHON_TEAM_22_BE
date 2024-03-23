@@ -6,14 +6,9 @@ import fairy.spring.fairy.Community.Request.CommunityRequest;
 import fairy.spring.fairy.Community.Response.CommunityResponse;
 import fairy.spring.fairy.Community.domain.Question;
 import fairy.spring.fairy.config.errors.exception.Exception400;
-import fairy.spring.fairy.home.entity.Tip;
-import fairy.spring.fairy.home.repository.TipRepository;
-import fairy.spring.fairy.user.domain.Bookmark;
-import fairy.spring.fairy.user.domain.Checklist;
 import fairy.spring.fairy.user.domain.User;
 import fairy.spring.fairy.user.repository.BookmarkRepository;
 import fairy.spring.fairy.user.repository.UserRepository;
-import fairy.spring.fairy.user.response.MypageResponse;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -40,10 +35,10 @@ public class Questionservice {
         LocalDateTime currentTime = LocalDateTime.now();
         Question question = Question.builder()
                 .title(questionRequestDTO.getTitle())
-                .Content(questionRequestDTO.getContent())
+                .content(questionRequestDTO.getContent())
                 .email(questionRequestDTO.getEmail())
                 .imageurl(questionRequestDTO.getImageurl())
-                .nickname(questionRequestDTO.getNickname())
+                .nickname(user.getNickname())
                 .category("질문")
                 .timestamp(currentTime)
                 .bookmarkcount(0)

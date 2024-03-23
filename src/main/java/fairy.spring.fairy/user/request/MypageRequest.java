@@ -3,7 +3,6 @@ package fairy.spring.fairy.user.request;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 
 public class MypageRequest {
@@ -12,6 +11,10 @@ public class MypageRequest {
     @NoArgsConstructor(access = AccessLevel.PROTECTED)
     public static class MypageinfoRequestDTO {
         private String email;
+
+        public MypageinfoRequestDTO(String email) {
+            this.email = email;
+        }
     }
 
     @Getter
