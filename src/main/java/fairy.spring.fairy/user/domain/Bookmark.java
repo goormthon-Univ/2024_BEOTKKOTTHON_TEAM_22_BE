@@ -23,6 +23,8 @@ public class Bookmark {
     @Setter
     private Tip tip;
 
+
+
     public Bookmark(User user, Tip tip) {
         this.user = user;
         this.tip = tip;
