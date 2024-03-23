@@ -21,50 +21,24 @@ public class CommunityRequest {
         @Getter
         private String email;
         @Getter
-        private Blob imageurl;
+        private List<MultipartFile> imageurl;
 
 
-        public QuestionRequestDTO(String email,String content,Blob imageurl) {
+        public QuestionRequestDTO(String email, String content, String title, List<MultipartFile> imageurl) {
             this.email = email;
-            this.content=content;
+            this.content = content;
+            this.title = title;
             this.imageurl=imageurl;
         }
 
-        public QuestionRequestDTO(String email, String content, String title) {
-            this.email = email;
-            this.content = content;
-            this.title = title;
-        }
-    }
 
 
 
 
 
 
-
-    @Getter
-    public static class QuestionimageRequestDTO {
-        private List<MultipartFile> imageurl;
-        private String content;
-        private String title;
-        private String email;
-
-        public QuestionimageRequestDTO(List<MultipartFile> imageurl, String content, String title, String email) {
-            this.imageurl = imageurl;
-            this.content = content;
-            this.email = email;
-            this.title = title;
         }
 
-        public QuestionRequestDTO getQuestionRequestDTO() {
-            return new QuestionRequestDTO(
-                    this.email,
-                    this.content,
-                    this.title
-            );
-        }
-    }
 
 
 
