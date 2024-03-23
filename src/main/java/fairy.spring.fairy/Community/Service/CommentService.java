@@ -35,6 +35,7 @@ public class CommentService {
                 .itemid(commentRequestDTO.getItemid())
                 .email(commentRequestDTO.getEmail())
                 .build();
+        commentrepository.save(comment);
         Question question  = questionrepository.findById(commentRequestDTO.getItemid()).orElseThrow(()-> new Exception400(null,"해당하는 글이없습니다."));
         int count = question.getCommentcount();
         question.setCommentcount(count+=1);

@@ -44,6 +44,8 @@ public class MypageRequest {
             this.email = email;
         }
     }
+
+
 }
 
 

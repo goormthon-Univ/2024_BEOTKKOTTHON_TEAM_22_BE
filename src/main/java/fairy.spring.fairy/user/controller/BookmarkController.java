@@ -1,5 +1,7 @@
 package fairy.spring.fairy.user.controller;
 
+import fairy.spring.fairy.Community.Repository.questionrepository;
+import fairy.spring.fairy.Community.domain.Question;
 import fairy.spring.fairy.config.utils.ApiResponseBuilder;
 import fairy.spring.fairy.user.domain.Bookmark;
 import fairy.spring.fairy.user.repository.BookmarkRepository;
@@ -23,15 +25,12 @@ public class BookmarkController {
 
     private final BookmarkService bookmarkService;
     private final BookmarkRepository bookmarkRepository;
+    private final questionrepository questionrepository;
 
     @Operation(summary = "질문 북마크  생성", description = "북마크 목록을 생성합니다.")
     @ApiResponse(responseCode = "201", description = "북마크 목록 생성 성공")
-    @PostMapping("/question/bookmark/{questionid}")
-    public ResponseEntity<?> create(@PathVariable("questionid") Long questionid, @RequestBody MypageRequest.BookmarkRequestDTO bookmarkRequestDTO) {
-        Bookmark existingBookmark = bookmarkRepository.findByQuestionid(questionid);
-        if (existingBookmark != null) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("이미 북마크된 질문입니다.");
-        }
+    @PostMapping("/question/bookmark/{quesionid}")
+    public ResponseEntity<?> create(@PathVariable("questionid") Long questionid,@RequestBody MypageRequest.BookmarkRequestDTO bookmarkRequestDTO) {
         bookmarkService.createBookmarkQuestion(bookmarkRequestDTO);
         return ResponseEntity.status(HttpStatus.OK).body(ApiResponseBuilder.successWithNoContent());
     }
@@ -41,10 +40,6 @@ public class BookmarkController {
     @ApiResponse(responseCode = "200", description = "북마크 목록 해제 성공")
     @DeleteMapping("/question/bookmark/{questionid}")
     public ResponseEntity<?> create(@PathVariable("questionid") Long questionid) {
-        Bookmark existingBookmark = bookmarkRepository.findByQuestionid(questionid);
-        if (existingBookmark == null) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("이미 북마크가 해제된 질문입니다.");
-        }
         bookmarkService.deleteBookmark(questionid);
         return ResponseEntity.status(HttpStatus.OK).body(ApiResponseBuilder.successWithNoContent());
     }

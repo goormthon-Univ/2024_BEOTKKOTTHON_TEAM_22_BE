@@ -52,8 +52,8 @@ public class Questionservice {
         user.setTotalpoint(currentpoint+10);
         userRepository.save(user);
         questionrepository.save(question);
-       s3UploadService.uploadMultipleFiles(questionimageRequestDTO.getImageurl());
-        return new CommunityResponse.QuestionResponseDTO(questionrepository.save(question));
+       List<String> url =s3UploadService.uploadMultipleFiles(questionimageRequestDTO.getImageurl());
+        return new CommunityResponse.QuestionResponseDTO(questionrepository.save(question),url);
     }
 
     @Transactional
@@ -64,8 +64,8 @@ public class Questionservice {
             question.setTitle(questionimageRequestDTO.getTitle());
             question.setContent(questionimageRequestDTO.getContent());
         }
-        s3UploadService.uploadMultipleFiles(questionimageRequestDTO.getImageurl());
-        return new CommunityResponse.QuestionResponseDTO(questionrepository.save(question));
+        List<String> url = s3UploadService.uploadMultipleFiles(questionimageRequestDTO.getImageurl());
+        return new CommunityResponse.QuestionResponseDTO(questionrepository.save(question), url);
     }
 
     @Transactional
