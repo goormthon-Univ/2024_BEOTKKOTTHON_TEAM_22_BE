@@ -16,7 +16,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@Tag(name="mypage", description = "마이페이지 api")
+@Tag(name = "mypage", description = "마이페이지 api")
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api")
@@ -26,10 +26,9 @@ public class MypageController {
 
     @Operation(summary = "프로필 조회", description = "프로필을 조회합니다.")
     @ApiResponse(responseCode = "200", description = "프로필 조회 성공")
-    @PostMapping(value = "/mypage")
+    @GetMapping(value = "/mypage")
     public ResponseEntity<?> getProfile(@RequestBody MypageRequest.MypageinfoRequestDTO mypageinfoRequestDTO) {
         // jwt 헤더에 담기
-
         MypageResponse.MypageinfoResponseDTO mypageinfoResponseDTO = mypageService.updateprofile(mypageinfoRequestDTO);
         return ResponseEntity.status(HttpStatus.OK).body(ApiResponseBuilder.success(mypageinfoResponseDTO));
     }
