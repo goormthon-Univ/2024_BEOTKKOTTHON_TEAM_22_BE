@@ -30,8 +30,7 @@ public class Question {
     @Column(nullable = false)
     private String email;
 
-    @Column(nullable = true)
-    private List<MultipartFile> imageurl;
+
 
     @Column(nullable = false)
     private String nickname;
@@ -53,12 +52,11 @@ public class Question {
 
 
     @Builder
-    public Question(Long id, String title, String content, String email,List<MultipartFile> imageurl,String nickname,String category,Integer bookmarkcount,Integer commentcount,LocalDateTime timestamp,boolean bookmarkstatus) {
+    public Question(Long id, String title, String content, String email,String nickname,String category,Integer bookmarkcount,Integer commentcount,LocalDateTime timestamp,boolean bookmarkstatus) {
         this.id = id;
         this.title = title;
         this.content= content;
         this.email=email;
-        this.imageurl=imageurl;
         this.nickname=nickname;
         this.category=category;
         this.bookmarkcount=bookmarkcount;

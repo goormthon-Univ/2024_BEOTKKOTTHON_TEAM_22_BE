@@ -1,5 +1,6 @@
 package fairy.spring.fairy.user.service;
 
+import fairy.spring.fairy.Community.Repository.questionrepository;
 import fairy.spring.fairy.Community.domain.Question;
 import fairy.spring.fairy.config.errors.exception.Exception400;
 import fairy.spring.fairy.home.entity.Tip;
@@ -25,6 +26,7 @@ public class BookmarkService {
 
     private final BookmarkRepository bookmarkRepository;
     private final UserRepository userRepository;
+    private final questionrepository questionrepository;
 
 
 
@@ -44,6 +46,9 @@ public class BookmarkService {
                 .questionid(bookmarkRequestDTO.getQuestionid())
                 .userid(user.getId())
                 .build();
+        Question question  = questionrepository.findById(bookmarkRequestDTO.getTipid()).orElseThrow(()-> new Exception400(null,"해당하는 글이없습니다."));
+        int count = question.getBookmarkcount();
+        question.setBookmarkcount(count+=1);
         return bookmarkRepository.save(bookmark);
 
     }

@@ -18,15 +18,12 @@ public class CommunityResponse {
         private Long id;
         @Schema(description = "질문 작성 사용자 이메일", example = "1")
         private String email;
-        @Schema(description = "질문 작성 이미지 url")
-        private List<MultipartFile> imageurl;
         @Schema(description = "질문자 닉네임")
         private String nickname;
 
         public QuestionResponseDTO(Question question){
             this.id= question.getId();
             this.email=question.getEmail();
-            this.imageurl=question.getImageurl();
             this.nickname=question.getNickname();
 
         }
