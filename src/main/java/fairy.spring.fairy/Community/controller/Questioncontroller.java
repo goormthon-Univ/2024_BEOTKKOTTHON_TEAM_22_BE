@@ -60,9 +60,9 @@ public class Questioncontroller {
 
     @Operation(summary = "질문 디테일 조회", description = "디테일한 질문전체를 조회합니다.")
     @ApiResponse(responseCode = "200", description = "질문 조회 성공")
-    @GetMapping("/community/items/details")
-    public ResponseEntity<?> viewDetailQuestion(){
-        CommunityResponse.viewqdetailquestionResponseDTO viewqdetailquestionResponseDTO =questionDetailsService.searchdetailsAll();
+    @GetMapping("/community/items/details/{questionid}")
+    public ResponseEntity<?> viewDetailQuestion(@PathVariable("questionid") Long questionid){
+        CommunityResponse.viewqdetailquestionResponseDTO viewqdetailquestionResponseDTO =questionDetailsService.searchdetailsAll(questionid);
         return  ResponseEntity.status(HttpStatus.OK).body(ApiResponseBuilder.success(viewqdetailquestionResponseDTO));
     }
 

@@ -46,6 +46,7 @@ public class BookmarkService {
                 .questionid(bookmarkRequestDTO.getQuestionid())
                 .userid(user.getId())
                 .build();
+
         Question question  = questionrepository.findById(bookmarkRequestDTO.getTipid()).orElseThrow(()-> new Exception400(null,"해당하는 글이없습니다."));
         int count = question.getBookmarkcount();
         question.setBookmarkcount(count+=1);

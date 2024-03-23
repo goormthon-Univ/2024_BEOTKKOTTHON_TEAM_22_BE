@@ -3,12 +3,12 @@ package fairy.spring.fairy.Community.Response;
 import fairy.spring.fairy.Community.domain.Comment;
 import fairy.spring.fairy.Community.domain.Question;
 import io.swagger.v3.oas.annotations.media.Schema;
-import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
+import java.util.Optional;
 
 public class CommunityResponse {
     @Getter
@@ -20,11 +20,15 @@ public class CommunityResponse {
         private String email;
         @Schema(description = "질문자 닉네임")
         private String nickname;
+        @Schema(description = "이미지 url")
+        private List<String> imageurl;
 
-        public QuestionResponseDTO(Question question){
+        public QuestionResponseDTO(Question question,List<String> imageurl){
             this.id= question.getId();
-            this.email=question.getEmail();
-            this.nickname=question.getNickname();
+            this.email= question.getEmail();
+            this.nickname= question.getNickname();
+            this.imageurl=imageurl;
+
 
         }
     }
@@ -44,10 +48,10 @@ public class CommunityResponse {
     @Getter
     @NoArgsConstructor
     public static class viewqdetailquestionResponseDTO{
-        private List<Question> questions;
-        private List<Comment> comments;
+        private Optional<Question> questions;
+        private Optional<Comment> comments;
 
-        public viewqdetailquestionResponseDTO(List<Question> questions, List<Comment> comments){
+        public viewqdetailquestionResponseDTO(Optional<Question> questions, Optional<Comment> comments){
 
             this.questions=questions;
             this.comments=comments;
