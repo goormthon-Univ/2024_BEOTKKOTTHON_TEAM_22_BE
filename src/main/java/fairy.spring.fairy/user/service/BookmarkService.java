@@ -39,7 +39,7 @@ public class BookmarkService {
         return bookmarkRepository.save(bookmark);
     }
 
-    public Bookmark createBookmarkQuestion(MypageRequest.BookmarkRequestDTO bookmarkRequestDTO) {
+    public Bookmark createBookmarkQuestion(MypageRequest.BookmarkRequestDTO bookmarkRequestDTO,Long questionid) {
         User user = userRepository.findByEmail(bookmarkRequestDTO.getEmail()).orElseThrow(()-> new Exception400(null, "로그인을 해주세요."));
         Bookmark bookmark = Bookmark.builder()
                 .bookmarkstatus(true)
@@ -47,7 +47,7 @@ public class BookmarkService {
                 .userid(user.getId())
                 .build();
 
-        Question question  = questionrepository.findById(bookmarkRequestDTO.getTipid()).orElseThrow(()-> new Exception400(null,"해당하는 글이없습니다."));
+        Question question  = questionrepository.findById(questionid).orElseThrow(()-> new Exception400(null,"해당하는 글이없습니다."));
         int count = question.getBookmarkcount();
         question.setBookmarkcount(count+=1);
         return bookmarkRepository.save(bookmark);
