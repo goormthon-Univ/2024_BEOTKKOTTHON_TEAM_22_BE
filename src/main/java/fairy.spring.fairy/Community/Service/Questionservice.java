@@ -29,15 +29,15 @@ public class Questionservice {
    //질문 등록
     @Transactional
     @JsonProperty
-    public CommunityResponse.QuestionResponseDTO createQuestion(CommunityRequest.QuestionRequestDTO questionRequestDTO) {
-        User user = userRepository.findByEmail(questionRequestDTO.getEmail())
+    public CommunityResponse.QuestionResponseDTO createQuestion(CommunityRequest.QuestionimageRequestDTO questionimageRequestDTO) {
+        User user = userRepository.findByEmail(questionimageRequestDTO.getQuestionRequestDTO().getEmail())
                 .orElseThrow(() -> new Exception400(null, "로그인을 해주세요."));
         LocalDateTime currentTime = LocalDateTime.now();
         Question question = Question.builder()
-                .title(questionRequestDTO.getTitle())
-                .content(questionRequestDTO.getContent())
-                .email(questionRequestDTO.getEmail())
-                .imageurl(questionRequestDTO.getImageurl())
+                .title(questionimageRequestDTO.getQuestionRequestDTO().getTitle())
+                .content(questionimageRequestDTO.getQuestionRequestDTO().getContent())
+                .email(questionimageRequestDTO.getQuestionRequestDTO().getEmail())
+                .imageurl(questionimageRequestDTO.getImageurl())
                 .nickname(user.getNickname())
                 .category("질문")
                 .timestamp(currentTime)
@@ -55,12 +55,12 @@ public class Questionservice {
 
     @Transactional
     // 질문 수정
-    public CommunityResponse.QuestionResponseDTO updateById(Long question_id, CommunityRequest.QuestionRequestDTO questionRequestDTO) {
+    public CommunityResponse.QuestionResponseDTO updateById(Long question_id, CommunityRequest.QuestionimageRequestDTO questionimageRequestDTO) {
         Question question = this.searchById(question_id);
         if (question.getTitle() != null && question.getContent() != null) {
-            question.setTitle(questionRequestDTO.getTitle());
-            question.setContent(questionRequestDTO.getContent());
-            question.setImageurl(questionRequestDTO.getImageurl());
+            question.setTitle(questionimageRequestDTO.getQuestionRequestDTO().getTitle());
+            question.setContent(questionimageRequestDTO.getQuestionRequestDTO().getContent());
+            question.setImageurl(questionimageRequestDTO.getImageurl());
         }
         return new CommunityResponse.QuestionResponseDTO(questionrepository.save(question));
     }

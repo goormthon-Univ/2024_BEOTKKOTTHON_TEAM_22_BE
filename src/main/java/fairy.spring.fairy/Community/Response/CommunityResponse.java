@@ -6,6 +6,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -18,7 +19,7 @@ public class CommunityResponse {
         @Schema(description = "질문 작성 사용자 이메일", example = "1")
         private String email;
         @Schema(description = "질문 작성 이미지 url")
-        private List<String> imageurl;
+        private List<MultipartFile> imageurl;
         @Schema(description = "질문자 닉네임")
         private String nickname;
 
@@ -45,11 +46,11 @@ public class CommunityResponse {
 
     @Getter
     @NoArgsConstructor
-    public static class viewqdetailuestionResponseDTO{
+    public static class viewqdetailquestionResponseDTO{
         private List<Question> questions;
         private List<Comment> comments;
 
-        public viewqdetailuestionResponseDTO(List<Question> questions, List<Comment> comments){
+        public viewqdetailquestionResponseDTO(List<Question> questions, List<Comment> comments){
 
             this.questions=questions;
             this.comments=comments;

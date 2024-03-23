@@ -1,9 +1,11 @@
 package fairy.spring.fairy.Community.Service;
 
 import fairy.spring.fairy.Community.Repository.Commentrepository;
+import fairy.spring.fairy.Community.Repository.questionrepository;
 import fairy.spring.fairy.Community.Request.CommunityRequest;
 import fairy.spring.fairy.Community.Response.CommunityResponse;
 import fairy.spring.fairy.Community.domain.Comment;
+import fairy.spring.fairy.Community.domain.Question;
 import fairy.spring.fairy.config.errors.exception.Exception400;
 import fairy.spring.fairy.user.domain.User;
 import fairy.spring.fairy.user.repository.UserRepository;
@@ -19,8 +21,7 @@ public class CommentService {
 
     private final UserRepository userRepository;
     private final Commentrepository commentrepository;
-
-
+    private final questionrepository questionrepository;
 
 
     //댓글 등록
@@ -34,6 +35,7 @@ public class CommentService {
                 .itemid(commentRequestDTO.getItemid())
                 .email(commentRequestDTO.getEmail())
                 .build();
+        //Question question  = questionrepository.findById(commentRequestDTO.getItemid()).orElseThrow()
         //포인트 적립
         int currentpoint=user.getTotalpoint();
         user.setTotalpoint(currentpoint+10);

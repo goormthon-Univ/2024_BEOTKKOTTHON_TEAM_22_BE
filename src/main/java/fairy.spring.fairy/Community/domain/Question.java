@@ -2,9 +2,11 @@ package fairy.spring.fairy.Community.domain;
 
 import jakarta.persistence.*;
 import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.websocket.Encoder;
 import lombok.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.sql.Blob;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -29,7 +31,7 @@ public class Question {
     private String email;
 
     @Column(nullable = true)
-    private List<String> imageurl;
+    private List<MultipartFile> imageurl;
 
     @Column(nullable = false)
     private String nickname;
@@ -51,7 +53,7 @@ public class Question {
 
 
     @Builder
-    public Question(Long id, String title, String content, String email,List<String> imageurl,String nickname,String category,Integer bookmarkcount,Integer commentcount,LocalDateTime timestamp,boolean bookmarkstatus) {
+    public Question(Long id, String title, String content, String email,List<MultipartFile> imageurl,String nickname,String category,Integer bookmarkcount,Integer commentcount,LocalDateTime timestamp,boolean bookmarkstatus) {
         this.id = id;
         this.title = title;
         this.content= content;

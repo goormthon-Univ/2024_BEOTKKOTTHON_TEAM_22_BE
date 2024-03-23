@@ -18,10 +18,10 @@ public class QuestionDetailsService {
     private final Commentrepository commentrepository;
     @Transactional
     //자세한 질문 목록 전체 조회
-    public CommunityResponse.viewqdetailuestionResponseDTO searchdetailsAll(){
+    public CommunityResponse.viewqdetailquestionResponseDTO searchdetailsAll(){
         List<Question> questiondetails = questionrepository.findAll();
         List<Comment> commentdetails =  commentrepository.findAll();
-        return new CommunityResponse.viewqdetailuestionResponseDTO(questiondetails,commentdetails);
+        return new CommunityResponse.viewqdetailquestionResponseDTO(questiondetails,commentdetails);
     }
 
 
