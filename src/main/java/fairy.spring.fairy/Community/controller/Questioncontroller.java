@@ -14,7 +14,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.util.Collections;
 import java.util.List;
 
 
@@ -31,8 +34,8 @@ public class Questioncontroller {
     @ApiResponse(responseCode = "200", description = "질문 등록 성공",
             content = @Content(mediaType = "text/plain"))
     @PostMapping(value = "/community/question")
-    public ResponseEntity<?> createQuestion(@ModelAttribute CommunityRequest.QuestionimageRequestDTO questionimageRequestDTO) {
-        CommunityResponse.QuestionResponseDTO questionResponseDTO = questionservice.createQuestion(questionimageRequestDTO);
+    public ResponseEntity<?> createQuestion(@ModelAttribute CommunityRequest.QuestionimageRequestDTO questionRequestDTO) throws IOException {
+        CommunityResponse.QuestionResponseDTO questionResponseDTO = questionservice.createQuestion(questionRequestDTO);
         return ResponseEntity.status(HttpStatus.OK).body(ApiResponseBuilder.success(questionResponseDTO));
     }
 
@@ -42,8 +45,8 @@ public class Questioncontroller {
     @Operation(summary = "질문 수정", description = "질문을 수정합니다.")
     @ApiResponse(responseCode = "200", description = "질문 수정 성공")
     @PatchMapping("/community/question/{question_id}")
-    public ResponseEntity<?> update(@PathVariable("question_id") Long question_id, CommunityRequest.QuestionimageRequestDTO questionimageRequestDTO) {
-        CommunityResponse.QuestionResponseDTO questionResponseDTO = questionservice.updateById(question_id,questionimageRequestDTO);
+    public ResponseEntity<?> update(@PathVariable("question_id") Long question_id, CommunityRequest.QuestionRequestDTO questionRequestDTO) throws IOException {
+        CommunityResponse.QuestionResponseDTO questionResponseDTO = questionservice.updateById(question_id, questionRequestDTO, Collections.emptyList());
         return ResponseEntity.status(HttpStatus.OK).body(ApiResponseBuilder.successWithNoContent());
     }
 

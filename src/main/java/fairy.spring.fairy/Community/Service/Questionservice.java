@@ -13,8 +13,10 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -24,12 +26,13 @@ public class Questionservice {
     private final questionrepository questionrepository;
     private final UserRepository userRepository;
     private final BookmarkRepository bookmarkRepository;
+    private final S3UploadService s3UploadService;
 
 
    //질문 등록
     @Transactional
     @JsonProperty
-    public CommunityResponse.QuestionResponseDTO createQuestion(CommunityRequest.QuestionimageRequestDTO questionimageRequestDTO) {
+    public CommunityResponse.QuestionResponseDTO createQuestion(CommunityRequest.QuestionimageRequestDTO questionimageRequestDTO) throws IOException {
         User user = userRepository.findByEmail(questionimageRequestDTO.getQuestionRequestDTO().getEmail())
                 .orElseThrow(() -> new Exception400(null, "로그인을 해주세요."));
         LocalDateTime currentTime = LocalDateTime.now();
@@ -37,7 +40,6 @@ public class Questionservice {
                 .title(questionimageRequestDTO.getQuestionRequestDTO().getTitle())
                 .content(questionimageRequestDTO.getQuestionRequestDTO().getContent())
                 .email(questionimageRequestDTO.getQuestionRequestDTO().getEmail())
-                .imageurl(questionimageRequestDTO.getImageurl())
                 .nickname(user.getNickname())
                 .category("질문")
                 .timestamp(currentTime)
@@ -50,18 +52,19 @@ public class Questionservice {
         user.setTotalpoint(currentpoint+10);
         userRepository.save(user);
         questionrepository.save(question);
+       s3UploadService.uploadMultipleFiles(questionimageRequestDTO.getImageurl());
         return new CommunityResponse.QuestionResponseDTO(questionrepository.save(question));
     }
 
     @Transactional
     // 질문 수정
-    public CommunityResponse.QuestionResponseDTO updateById(Long question_id, CommunityRequest.QuestionimageRequestDTO questionimageRequestDTO) {
+    public CommunityResponse.QuestionResponseDTO updateById(Long question_id, CommunityRequest.QuestionRequestDTO questionRequestDTO,List<MultipartFile> imageurls) throws IOException {
         Question question = this.searchById(question_id);
         if (question.getTitle() != null && question.getContent() != null) {
-            question.setTitle(questionimageRequestDTO.getQuestionRequestDTO().getTitle());
-            question.setContent(questionimageRequestDTO.getQuestionRequestDTO().getContent());
-            question.setImageurl(questionimageRequestDTO.getImageurl());
+            question.setTitle(questionRequestDTO.getTitle());
+            question.setContent(questionRequestDTO.getContent());
         }
+        s3UploadService.uploadMultipleFiles(imageurls);
         return new CommunityResponse.QuestionResponseDTO(questionrepository.save(question));
     }
 

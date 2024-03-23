@@ -35,7 +35,10 @@ public class CommentService {
                 .itemid(commentRequestDTO.getItemid())
                 .email(commentRequestDTO.getEmail())
                 .build();
-        //Question question  = questionrepository.findById(commentRequestDTO.getItemid()).orElseThrow()
+        Question question  = questionrepository.findById(commentRequestDTO.getItemid()).orElseThrow(()-> new Exception400(null,"해당하는 글이없습니다."));
+        int count = question.getCommentcount();
+        question.setCommentcount(count+=1);
+
         //포인트 적립
         int currentpoint=user.getTotalpoint();
         user.setTotalpoint(currentpoint+10);

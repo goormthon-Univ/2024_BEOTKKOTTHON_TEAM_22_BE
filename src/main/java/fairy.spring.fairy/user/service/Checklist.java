@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.Arrays;
 import java.util.List;
 
 
@@ -29,7 +30,23 @@ public class Checklist {
     @Transactional
     //체크 리스트 목록 전체 조회
     public MypageResponse.ChecklistViewResponseDTO searchAll(Long userid){
-        List<fairy.spring.fairy.user.domain.Checklist> checklist = todoRepository.findByUserid(userid);
+        List<fairy.spring.fairy.user.domain.Checklist> checklist = Arrays.asList(
+                fairy.spring.fairy.user.domain.Checklist.builder()
+                        .title("자취 필수템 확인하셨나요?")
+                        .id(1L)
+                        .completed(false)
+                        .build(),
+                fairy.spring.fairy.user.domain.Checklist.builder()
+                        .title("효율적인 설거지를 하고 있나요?")
+                        .id(2L)
+                        .completed(false)
+                        .build(),
+                fairy.spring.fairy.user.domain.Checklist.builder()
+                        .title("화장실 청소 하셨나요?")
+                        .id(3L)
+                        .completed(false)
+                        .build()
+        );
         return new MypageResponse.ChecklistViewResponseDTO(checklist);
     }
     @Transactional
