@@ -12,7 +12,7 @@ import java.util.List;
 
 @Entity
 @Getter
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+
 public class Tip {
 
     @Id
@@ -27,8 +27,17 @@ public class Tip {
 
     private String content;
 
-    // 다른 필드와 관련된 코드들...
+    @OneToMany(mappedBy = "tip")
+    private List<Recommendation> recommendations;
 
-    //@OneToMany(mappedBy = "tip")
-    //private List<Recommendation> recommendations;
+
+
+    public int getBookmarkCounts(){
+        return recommendations.size();
+    }
+
+    public boolean getBookmarkStatus(){
+        return recommendations.size() > 0;
+    }
+
 }

@@ -1,24 +1,34 @@
 package fairy.spring.fairy.Community.Request;
 
 
-import lombok.AccessLevel;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
+
 
 
 import java.util.List;
-
+@NoArgsConstructor
 public class CommunityRequest {
 
     @Getter
-    @NoArgsConstructor(access = AccessLevel.PROTECTED)
-    public static class questionRequestDTO{
-
-        private String title;
-        private String content;
+    public static class QuestionRequestDTO {
+        @Getter
+        private String Title;
+        @Getter
+        private String Content;
+        @Getter
         private String email;
-        private List<String> imageurl;
+        private List<String> Imageurl;
+
+        public List<String> Imageurl() {
+            return Imageurl;
+        }
+
+
+    }
+
+        /*
 
         public questionRequestDTO(String email, String content,List<String> imageurl,String title) {
             this.email = email;
@@ -26,29 +36,33 @@ public class CommunityRequest {
             this.imageurl=imageurl;
             this.title=title;
         }
-    }
+
+         */
+
+
 
 
 
 
     @Getter
-    @NoArgsConstructor(access = AccessLevel.PROTECTED)
     public static class CommentRequestDTO{
 
         private Long itemid;
         private String type;
         private String content;
         private String email;
+
         public CommentRequestDTO(String email, String content, Long itemid, String type) {
             this.email = email;
             this.content=content;
             this.type=type;
             this.itemid=itemid;
         }
+
+
     }
 
     @Getter
-    @NoArgsConstructor(access = AccessLevel.PROTECTED)
     public static class CommentmodifyRequestDTO{
 
         private String content;
