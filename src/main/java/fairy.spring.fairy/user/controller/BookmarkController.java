@@ -10,11 +10,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class BookmarkController {
 
 
-    private final BookmarkService bookmarkService;
-
     @Autowired
     public BookmarkController(BookmarkService bookmarkService) {
-        this.bookmarkService = bookmarkService;
     }
 
     // 북마크 관련 API 엔드포인트 구현

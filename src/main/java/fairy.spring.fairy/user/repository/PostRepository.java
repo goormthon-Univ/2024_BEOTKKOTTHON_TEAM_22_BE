@@ -10,5 +10,3 @@ public interface PostRepository extends JpaRepository<Question, Long> {
 
 }
 
-
-

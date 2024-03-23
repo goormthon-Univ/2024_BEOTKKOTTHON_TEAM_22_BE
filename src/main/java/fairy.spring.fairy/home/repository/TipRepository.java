@@ -9,4 +9,6 @@ import java.util.List;
 public interface TipRepository extends JpaRepository<Tip, Long> {
     List<Tip> findByCategory(Category category);
     List<Tip> findByTitleContainingOrContentContaining(String titleKeyword, String contentKeyword);
+
+    List<Tip> findByTitleContainingIgnoreCaseOrContentContainingIgnoreCase(String keyword, String keyword1);
 }

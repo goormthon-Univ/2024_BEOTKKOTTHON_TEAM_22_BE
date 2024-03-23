@@ -1,10 +1,12 @@
+/*
 package fairy.spring.fairy.Community.Service;
 
 import fairy.spring.fairy.Community.Request.CommunityRequest;
 import fairy.spring.fairy.Community.Response.CommunityResponse;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
-import lombok.SneakyThrows;
+import lombok.SneakyThrow
+s;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,3 +23,4 @@ public class QuestionImageservice {
         return new CommunityResponse.questionImageResponseDTO(questionImage);
     }
 }
+*/

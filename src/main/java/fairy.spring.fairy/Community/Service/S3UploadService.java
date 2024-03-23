@@ -1,4 +1,4 @@
-package fairy.spring.fairy.Community.Service;
+/*package fairy.spring.fairy.Community.Service;
 
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.model.ObjectMetadata;
@@ -55,3 +55,4 @@ public class S3UploadService {
         amazonS3.deleteObject(bucket, originalFilename);
     }
 }
+*/

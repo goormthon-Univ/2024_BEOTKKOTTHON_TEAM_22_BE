@@ -5,6 +5,8 @@ import fairy.spring.fairy.user.domain.Bookmark;
 import fairy.spring.fairy.user.domain.User;
 import fairy.spring.fairy.user.repository.BookmarkRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.http.HttpStatus;
+//import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -17,6 +19,8 @@ public class BookmarkService {
         this.bookmarkRepository = bookmarkRepository;
     }
 
+
+
     // 북마크 생성,
     public Bookmark createBookmark(User user, Tip tip) {
         Bookmark bookmark = new Bookmark();
@@ -24,6 +28,7 @@ public class BookmarkService {
         bookmark.setTip(tip);
         return bookmarkRepository.save(bookmark);
     }
+
 
     // 삭제
     // 북마크 삭제 메서드

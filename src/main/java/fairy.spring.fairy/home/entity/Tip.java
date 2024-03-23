@@ -31,10 +31,12 @@ public class Tip {
     private List<Recommendation> recommendations;
 
     public int getBookmarkCounts(){
+
         return recommendations.size();
     }
 
     public boolean getBookmarkStatus(){
+
         return recommendations.size() > 0;
     }
 }

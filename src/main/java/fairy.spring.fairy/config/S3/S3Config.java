@@ -1,4 +1,4 @@
-package fairy.spring.fairy.config.S3;
+/*package fairy.spring.fairy.config.S3;
 
 import com.amazonaws.auth.AWSStaticCredentialsProvider;
 import com.amazonaws.auth.BasicAWSCredentials;
@@ -33,3 +33,4 @@ public class S3Config {
                 .build();
     }
 }
+*/

@@ -19,13 +19,8 @@ public class Category {
 
     private String name;
 
-    // 다른 필드와 관련된 코드들...
-    public void setId(Long id) {
-        this.id = id;
-    }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+    @Enumerated(EnumType.STRING)
+    private CategoryType type;
 
 }
