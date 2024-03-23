@@ -34,7 +34,7 @@ public class Questioncontroller {
     @ApiResponse(responseCode = "200", description = "질문 등록 성공",
             content = @Content(mediaType = "text/plain"))
     @PostMapping(value = "/community/question")
-    public ResponseEntity<?> createQuestion(@ModelAttribute CommunityRequest.QuestionimageRequestDTO questionRequestDTO) throws IOException {
+    public ResponseEntity<?> createQuestion(@ModelAttribute CommunityRequest.QuestionRequestDTO questionRequestDTO) throws IOException {
         CommunityResponse.QuestionResponseDTO questionResponseDTO = questionservice.createQuestion(questionRequestDTO);
         return ResponseEntity.status(HttpStatus.OK).body(ApiResponseBuilder.success(questionResponseDTO));
     }
@@ -46,7 +46,7 @@ public class Questioncontroller {
     @ApiResponse(responseCode = "200", description = "질문 수정 성공")
     @PatchMapping("/community/question/{question_id}")
     public ResponseEntity<?> update(@PathVariable("question_id") Long question_id, CommunityRequest.QuestionRequestDTO questionRequestDTO) throws IOException {
-        CommunityResponse.QuestionResponseDTO questionResponseDTO = questionservice.updateById(question_id, questionRequestDTO, Collections.emptyList());
+        CommunityResponse.QuestionResponseDTO questionResponseDTO = questionservice.updateById(question_id, questionRequestDTO);
         return ResponseEntity.status(HttpStatus.OK).body(ApiResponseBuilder.successWithNoContent());
     }
 

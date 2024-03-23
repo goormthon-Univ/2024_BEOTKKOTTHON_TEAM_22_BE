@@ -32,14 +32,14 @@ public class Questionservice {
    //질문 등록
     @Transactional
     @JsonProperty
-    public CommunityResponse.QuestionResponseDTO createQuestion(CommunityRequest.QuestionimageRequestDTO questionimageRequestDTO) throws IOException {
-        User user = userRepository.findByEmail(questionimageRequestDTO.getQuestionRequestDTO().getEmail())
+    public CommunityResponse.QuestionResponseDTO createQuestion(CommunityRequest.QuestionRequestDTO questionimageRequestDTO) throws IOException {
+        User user = userRepository.findByEmail(questionimageRequestDTO.getEmail())
                 .orElseThrow(() -> new Exception400(null, "로그인을 해주세요."));
         LocalDateTime currentTime = LocalDateTime.now();
         Question question = Question.builder()
-                .title(questionimageRequestDTO.getQuestionRequestDTO().getTitle())
-                .content(questionimageRequestDTO.getQuestionRequestDTO().getContent())
-                .email(questionimageRequestDTO.getQuestionRequestDTO().getEmail())
+                .title(questionimageRequestDTO.getTitle())
+                .content(questionimageRequestDTO.getContent())
+                .email(questionimageRequestDTO.getEmail())
                 .nickname(user.getNickname())
                 .category("질문")
                 .timestamp(currentTime)
@@ -58,13 +58,13 @@ public class Questionservice {
 
     @Transactional
     // 질문 수정
-    public CommunityResponse.QuestionResponseDTO updateById(Long question_id, CommunityRequest.QuestionRequestDTO questionRequestDTO,List<MultipartFile> imageurls) throws IOException {
+    public CommunityResponse.QuestionResponseDTO updateById(Long question_id, CommunityRequest.QuestionRequestDTO questionimageRequestDTO) throws IOException {
         Question question = this.searchById(question_id);
         if (question.getTitle() != null && question.getContent() != null) {
-            question.setTitle(questionRequestDTO.getTitle());
-            question.setContent(questionRequestDTO.getContent());
+            question.setTitle(questionimageRequestDTO.getTitle());
+            question.setContent(questionimageRequestDTO.getContent());
         }
-        s3UploadService.uploadMultipleFiles(imageurls);
+        s3UploadService.uploadMultipleFiles(questionimageRequestDTO.getImageurl());
         return new CommunityResponse.QuestionResponseDTO(questionrepository.save(question));
     }
 
